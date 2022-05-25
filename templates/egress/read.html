@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+{% endblock %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="white-box">
+				<h3 class="box-title">Egresos y titulaciones</h3>
+				<div class="table-responsive">
+					<table class="table text-nowrap">
+						<thead>
+						<tr>
+							<th class="border-top-0">#</th>
+							<th class="border-top-0">Número de control</th>
+							<th class="border-top-0">Nombre</th>
+							<th class="border-top-0">Apellido paterno</th>
+							<th class="border-top-0">Apellido materno</th>
+							<th class="border-top-0">Carrera</th>
+							<th class="border-top-0">Opción de titulación</th>
+							<th class="border-top-0">Periodo de egreso</th>
+							<th class="border-top-0">Año de egreso</th>
+						</tr>
+						</thead>
+						<tbody>
+						{% for egress in egress_list %}
+							<tr>
+								<td>{{ eggress.id_number }}</td>
+								<td>{{ eggress.student_name }}</td>
+								<td>{{ eggress.paternal_surname }}</td>
+								<td>{{ eggress.maternal_surname }}</td>
+								<td>{{ eggress.career }}</td>
+								<td>{{ eggress.option }}</td>
+								<td>{{ eggress.egress_period }}</td>
+								<td>{{ eggress.egress_year }}</td>
+								<td>
+									<a href="{% url 'update_egress' egress.id %}">
+										<button type="button" class="btn btn-warning btn-xs btn-flat">
+											<i class="fas fa-pencil-alt" style="color: white"></i>
+										</button>
+									</a>
+									<a href="{% url 'delete_egress' egress.id %}">
+										<button type="button" class="btn btn-danger btn-xs btn-flat">
+											<i class="fas fa-trash-alt" style="color: white"></i>
+										</button>
+									</a>
+								</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<a href="{% url 'create_egress' %}">
+				<button type="button" class="btn btn-primary">Agregar</button>
+			</a>
+		</div>
+	</div>
+{% endblock %}

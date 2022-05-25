@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+{% endblock %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="white-box">
+				<h3 class="box-title">Localidades</h3>
+				<div class="table-responsive">
+					<table class="table text-nowrap">
+						<thead>
+						<tr>
+							<th class="border-top-0">#</th>
+							<th class="border-top-0">Localidad</th>
+							<th class="border-top-0">Municipio</th>
+						</tr>
+						</thead>
+						<tbody>
+						{% for locality in locality_list %}
+							<tr>
+								<td>{{ locality.id }}</td>
+								<td>{{ locality.locality_name }}</td>
+								<td>{{ locality.municipality }}</td>
+								<td>
+									<a href="{% url 'update_locality' locality.id %}">
+										<button type="button" class="btn btn-warning btn-xs btn-flat">
+											<i class="fas fa-pencil-alt" style="color: white"></i>
+										</button>
+									</a>
+									<a href="{% url 'delete_locality' locality.id %}">
+										<button type="button" class="btn btn-danger btn-xs btn-flat">
+											<i class="fas fa-trash-alt" style="color: white"></i>
+										</button>
+									</a>
+								</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<a href="{% url 'create_locality' %}">
+				<button type="button" class="btn btn-primary">Agregar</button>
+			</a>
+		</div>
+	</div>
+{% endblock %}
