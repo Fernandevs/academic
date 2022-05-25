@@ -37,6 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'careers.apps.CareersConfig',
+    'configuration.apps.ConfigurationConfig',
+    'dashboard.apps.DashboardConfig',
+    'departments.apps.DepartmentsConfig',
+    'egress.apps.EgressConfig',
+    'home.apps.HomeConfig',
+    'locality.apps.LocalityConfig',
+    'municipality.apps.MunicipalityConfig',
+    'school.apps.SchoolConfig',
+    'state.apps.StateConfig',
+    'students.apps.StudentsConfig',
     'users.apps.UsersConfig',
 ]
 
