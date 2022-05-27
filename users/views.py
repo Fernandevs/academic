@@ -1,28 +1,11 @@
-import django.contrib.auth
-
-from django.contrib.auth import authenticate
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
 from users.forms import UserCreateForm, UserUpdateForm
 from users.models import User
 
-
 # Create your views here.
-
-def login(request):
-    if request.method == 'POST':
-        user = authenticate(username=request.POST['username'], password=request.POST['password'])
-
-        if user is not None:
-            django.contrib.auth.login(request, user)
-            return HttpResponseRedirect(reverse_lazy('dashboard'))
-
-    return render(request, 'login.html')
 
 
 class UserListView(LoginRequiredMixin, ListView):
@@ -78,10 +61,3 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
         context['title'] = 'Eliminar usuarios'
 
         return context
-
-
-@login_required
-def logout(request):
-    django.contrib.auth.logout(request)
-
-    return HttpResponseRedirect(reverse_lazy('login'))

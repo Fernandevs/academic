@@ -17,7 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('', include('home.urls')),
     path('admin/', admin.site.urls),
     path('academic/', include('careers.urls')),
+    path('academic/', include('dashboard.urls')),
+    path('academic/', include('departments.urls')),
+    path('academic/', include('locality.urls')),
+    path('academic/', include('municipality.urls')),
+    path('academic/', include('school.urls')),
+    path('academic/', include('state.urls')),
+    path('academic/', include('students.urls')),
     path('academic/', include('users.urls'))
 ]

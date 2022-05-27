@@ -20,12 +20,10 @@ from academic import settings
 from users.views import *
 
 urlpatterns = [
-    path('users/login/', login, name='login'),
     path('users/create/', UserCreateView.as_view(), name='create_user'),
     path('users/list/', UserListView.as_view(), name='list_users'),
     path('users/update/<int:pk>/', UserUpdateView.as_view(), name='update_user'),
     path('users/delete/<int:pk>/', UserDeleteView.as_view(), name='delete_user'),
-    path('users/logout/', logout, name='logout'),
 ]
 
 if settings.DEBUG:
