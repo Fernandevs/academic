@@ -8,8 +8,8 @@ from academic.validators import name_validator
 
 from careers.models import Career
 
-
 # Create your models here.
+
 
 class Student(models.Model):
     first_name = models.CharField(

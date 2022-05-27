@@ -15,7 +15,7 @@ def login(request):
 
         if user is not None:
             django.contrib.auth.login(request, user)
-            # return HttpResponseRedirect(reverse_lazy('dashboard'))
+            return HttpResponseRedirect(reverse_lazy('dashboard'))
 
     return render(request, 'login.html')
 
