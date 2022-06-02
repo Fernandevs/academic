@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<form method="post" id="form-cargar-file" enctype="multipart/form-data">
+	{% csrf_token %}
+	<div class="row">
+		<div class="col-sm-12">
+			<label>Cargar Archivo CSV:</label>
+			<input type="file" id="file" class="form-control" name="file_name"
+						 accept=".csv">
+		</div>
+		<div class="col-sm-12 mt-4">
+			<button type="submit" class="btn btn-primary" id="btn-cargar">Cargar
+				Datos
+			</button>
+		</div>
+	</div>
+</form>
+{% endblock %}

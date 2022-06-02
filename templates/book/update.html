@@ -3,18 +3,17 @@
 {% load crispy_forms_filters %}
 
 {% block title %}
-{{ title }}
+	{{ title }}
 {% endblock %}
 
 {% block content %}
 	<div class="container mt-3 white-box">
-		<h3 class="box-title">Eliminar estudiante</h3>
+		<h3 class="box-title">Actualizar carrera</h3>
 		<form method="post">
 			{% csrf_token %}
-			<p>¿Está seguro de eliminar "{{ object }}"?</p>
 			{{ form|crispy }}
-			<input type="submit" value="Confirmar" class="btn btn-info" style="color: white">
-			<a href="{% url 'list_students' %}">
+			<input type="submit" value="Actualizar" class="btn btn-info" style="color: white">
+			<a href="{% url 'list_book' %}">
 				<input type="button" value="Cancelar" class="btn btn-danger" style="color: white">
 			</a>
 		</form>

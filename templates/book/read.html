@@ -14,33 +14,27 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="white-box">
-				<h3 class="box-title">Estudiantes</h3>
+				<h3 class="box-title">Libros</h3>
 				<div class="table-responsive">
 					<table class="table text-nowrap">
 						<thead>
 						<tr>
 							<th class="border-top-0">#</th>
-							<th class="border-top-0">Matricula</th>
-							<th class="border-top-0">Nombre</th>
-							<th class="border-top-0">Apellido paterno</th>
-							<th class="border-top-0">Apellido materno</th>
+							<th class="border-top-0">Título</th>
 						</tr>
 						</thead>
 						<tbody>
-						{% for student in student_list %}
+						{% for book in book_list %}
 							<tr>
-							<td>{{ student.id }}</td>
-							<td>{{ student.matricula }}</td>
-							<td>{{ student.nombre }}</td>
-							<td>{{ student.ape_pat }}</td>
-							<td>{{ student.ape_mat }}</td>
+								<td>{{ book.id }}</td>
+								<td>{{ book.title }}</td>
 								<td>
-									<a href="{% url 'update_student' student.id %}">
+									<a href="{% url 'update_book' book.id %}">
 										<button type="button" class="btn btn-warning btn-xs btn-flat">
 											<i class="fas fa-pencil-alt" style="color: white"></i>
 										</button>
 									</a>
-									<a href="{% url 'delete_student' student.id %}">
+									<a href="{% url 'delete_book' book.id %}">
 										<button type="button" class="btn btn-danger btn-xs btn-flat">
 											<i class="fas fa-trash-alt" style="color: white"></i>
 										</button>
@@ -52,7 +46,7 @@
 					</table>
 				</div>
 			</div>
-			<a href="{% url 'massive_student' %}">
+			<a href="{% url 'create_book' %}">
 				<button type="button" class="btn btn-primary">Agregar</button>
 			</a>
 		</div>

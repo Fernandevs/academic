@@ -1,94 +1,166 @@
-import datetime
-
-from django.utils.translation import gettext_lazy as _
 from django.db import models
-
-from academic.options import SEX
-from academic.validators import name_validator
-
-from careers.models import Career
 
 # Create your models here.
 
 
 class Student(models.Model):
-    first_name = models.CharField(
-        _("first name"),
-        max_length=150,
-        validators=[name_validator]
-    )
+    matricula = models.TextField(null=True, blank=False, unique=True)
+    completo = models.TextField(null=True, blank=False)
+    nombre = models.TextField(null=True, blank=False)
+    ape_pat = models.TextField(null=True, blank=False)
+    ape_mat = models.TextField(null=True, blank=True)
+    dia_nac = models.TextField(null=True, blank=True)
+    mes_nac = models.TextField(null=True, blank=True)
+    ano_nac = models.TextField(null=True, blank=True)
+    sexo = models.TextField(null=True, blank=True)
+    enti_nac = models.TextField(null=True, blank=True)
+    imp_cam = models.TextField(null=True, blank=True)
+    imp_ecu = models.TextField(null=True, blank=True)
+    # imp_cam = models.TextField(null=True, blank=True)
+    # imp_ecu = models.TextField(null=True, blank=True)
+    imp_ver = models.TextField(null=True, blank=True)
+    imp_con = models.TextField(null=True, blank=True)
+    imp_pan = models.TextField(null=True, blank=True)
+    imp_pca = models.TextField(null=True, blank=True)
+    imp_pdp = models.TextField(null=True, blank=True)
+    imp_pat = models.TextField(null=True, blank=True)
+    imp_pob = models.TextField(null=True, blank=True)
+    imp_pab = models.TextField(null=True, blank=True)
+    li_mad = models.TextField(null=True, blank=True)
+    li_pad = models.TextField(null=True, blank=True)
+    edo_proc = models.TextField(null=True, blank=True)
+    mes_cur = models.TextField(null=True, blank=True)
+    ano_cur = models.TextField(null=True, blank=True)
+    reg_proc = models.TextField(null=True, blank=True)
+    mod_bac = models.TextField(null=True, blank=True)
+    sis_nms = models.TextField(null=True, blank=True)
+    turno = models.TextField(null=True, blank=True)
+    prom_bac = models.TextField(null=True, blank=True)
+    bec_nec = models.TextField(null=True, blank=True)
+    exa_ext = models.TextField(null=True, blank=True)
+    mat_rep = models.TextField(null=True, blank=True)
+    fre_fcl = models.TextField(null=True, blank=True)
+    fre_lltm = models.TextField(null=True, blank=True)
+    fre_pdc = models.TextField(null=True, blank=True)
+    fre_dte = models.TextField(null=True, blank=True)
+    fre_ette = models.TextField(null=True, blank=True)
+    fre_ppa = models.TextField(null=True, blank=True)
+    fre_cde = models.TextField(null=True, blank=True)
+    fre_tsc = models.TextField(null=True, blank=True)
+    fre_sme = models.TextField(null=True, blank=True)
+    fre_ctr = models.TextField(null=True, blank=True)
+    per_hqp = models.TextField(null=True, blank=True)
+    per_aet = models.TextField(null=True, blank=True)
+    per_arp = models.TextField(null=True, blank=True)
+    per_ctd = models.TextField(null=True, blank=True)
+    ide_ese = models.TextField(null=True, blank=True)
+    ide_vbm = models.TextField(null=True, blank=True)
+    ide_ome = models.TextField(null=True, blank=True)
+    ide_ppm = models.TextField(null=True, blank=True)
+    ide_fam = models.TextField(null=True, blank=True)
+    ide_ces = models.TextField(null=True, blank=True)
+    ide_cec = models.TextField(null=True, blank=True)
+    des_desa = models.TextField(null=True, blank=True)
+    des_esme = models.TextField(null=True, blank=True)
+    des_term = models.TextField(null=True, blank=True)
+    des_duro = models.TextField(null=True, blank=True)
+    soc_ptfg = models.TextField(null=True, blank=True)
+    soc_imc = models.TextField(null=True, blank=True)
+    soc_pdc = models.TextField(null=True, blank=True)
+    soc_pdm = models.TextField(null=True, blank=True)
+    ocu_exv = models.TextField(null=True, blank=True)
+    ocu_dde = models.TextField(null=True, blank=True)
+    ocu_nep = models.TextField(null=True, blank=True)
+    ocu_pcc = models.TextField(null=True, blank=True)
+    ocu_pae = models.TextField(null=True, blank=True)
+    act_dtd = models.TextField(null=True, blank=True)
+    act_eod = models.TextField(null=True, blank=True)
+    act_dca = models.TextField(null=True, blank=True)
+    act_erc = models.TextField(null=True, blank=True)
+    hab_ptae = models.TextField(null=True, blank=True)
+    hab_dam = models.TextField(null=True, blank=True)
+    hab_aea = models.TextField(null=True, blank=True)
+    hab_tevs = models.TextField(null=True, blank=True)
+    hab_lti = models.TextField(null=True, blank=True)
+    hab_eti = models.TextField(null=True, blank=True)
+    hab_etiv = models.TextField(null=True, blank=True)
+    hab_mhc = models.TextField(null=True, blank=True)
+    hab_oif = models.TextField(null=True, blank=True)
+    hab_ioa = models.TextField(null=True, blank=True)
+    hab_eto = models.TextField(null=True, blank=True)
+    hab_apm = models.TextField(null=True, blank=True)
+    hab_rel = models.TextField(null=True, blank=True)
+    hab_sal = models.TextField(null=True, blank=True)
+    hab_dap = models.TextField(null=True, blank=True)
+    hab_cma = models.TextField(null=True, blank=True)
+    est_alca = models.TextField(null=True, blank=True)
+    ori_aue = models.TextField(null=True, blank=True)
+    ori_cme = models.TextField(null=True, blank=True)
+    ori_esx = models.TextField(null=True, blank=True)
+    ori_hso = models.TextField(null=True, blank=True)
+    ori_mdp = models.TextField(null=True, blank=True)
+    ori_mes = models.TextField(null=True, blank=True)
+    ori_mag = models.TextField(null=True, blank=True)
+    ori_nut = models.TextField(null=True, blank=True)
+    # ori_nut = models.TextField(null=True, blank=True)
+    uti_lplr = models.TextField(null=True, blank=True)
+    uti_bite = models.TextField(null=True, blank=True)
+    uti_cce = models.TextField(null=True, blank=True)
+    dan_malf = models.TextField(null=True, blank=True)
+    dan_ofi = models.TextField(null=True, blank=True)
+    dan_eir = models.TextField(null=True, blank=True)
+    dan_reqc = models.TextField(null=True, blank=True)
+    dan_mft = models.TextField(null=True, blank=True)
+    dan_fhc = models.TextField(null=True, blank=True)
+    hrs_trab = models.TextField(null=True, blank=True)
+    esco_mad = models.TextField(null=True, blank=True)
+    esco_pad = models.TextField(null=True, blank=True)
+    cuan_lib = models.TextField(null=True, blank=True)
+    ser_tele = models.TextField(null=True, blank=True)
+    ser_lav = models.TextField(null=True, blank=True)
+    ser_ref = models.TextField(null=True, blank=True)
+    ser_hor = models.TextField(null=True, blank=True)
+    ser_inte = models.TextField(null=True, blank=True)
+    ser_cabl = models.TextField(null=True, blank=True)
+    ser_tabl = models.TextField(null=True, blank=True)
+    bien_pc = models.TextField(null=True, blank=True)
+    ser_tv = models.TextField(null=True, blank=True)
+    ser_auto = models.TextField(null=True, blank=True)
+    ser_bano = models.TextField(null=True, blank=True)
+    vac_rm = models.TextField(null=True, blank=True)
+    car_foll = models.TextField(null=True, blank=True)
+    car_guia = models.TextField(null=True, blank=True)
+    car_piov = models.TextField(null=True, blank=True)
+    car_ptov = models.TextField(null=True, blank=True)
+    inf_pad = models.TextField(null=True, blank=True)
+    inf_her = models.TextField(null=True, blank=True)
+    inf_ami = models.TextField(null=True, blank=True)
+    inf_prf = models.TextField(null=True, blank=True)
+    inf_poe = models.TextField(null=True, blank=True)
+    uti_gui = models.TextField(null=True, blank=True)
+    cur_esc = models.TextField(null=True, blank=True)
+    cur_ipa = models.TextField(null=True, blank=True)
+    cur_mpa = models.TextField(null=True, blank=True)
+    icne = models.TextField(null=True, blank=True)
+    percen = models.TextField(null=True, blank=True)
+    porcecne = models.TextField(null=True, blank=True)
+    pcne = models.TextField(null=True, blank=True)
+    ppma = models.TextField(null=True, blank=True)
+    ppan = models.TextField(null=True, blank=True)
+    pele = models.TextField(null=True, blank=True)
+    ipma = models.TextField(null=True, blank=True)
+    ipan = models.TextField(null=True, blank=True)
+    iele = models.TextField(null=True, blank=True)
+    icle = models.TextField(null=True, blank=True)
+    no_control = models.TextField(null=True, blank=True)
+    ingreso = models.TextField(null=True, blank=True)
+    egreso = models.TextField(null=True, blank=True)
+    titulado = models.TextField(null=True, blank=True)
 
-    last_name = models.CharField(
-        _("last name"),
-        max_length=150,
-        validators=[name_validator]
-    )
-
-    career = models.ForeignKey(
-        to=Career,
-        on_delete=models.CASCADE
-    )
-
-    plan = models.CharField(
-        _('plan'),
-        max_length=255
-    )
-
-    period = models.CharField(
-        _('period'),
-        max_length=255
-    )
-
-    year = models.DateField(
-        _('year'),
-        default=datetime.datetime.now().year
-    )
-
-    record_number = models.PositiveIntegerField(
-        _('record number'),
-    )
-
-    control_number = models.CharField(
-        _('control_number'),
-        max_length=8
-    )
-
-    school_of_origin = models.CharField(
-        _('school_of_origin'),
-        max_length=255
-    )
-
-    average = models.DecimalField(
-        _('average'),
-        max_digits=4,
-        decimal_places=2
-    )
-
-    place_of_origin = models.CharField(
-        _('place_of_origin'),
-        max_length=255
-    )
-
-    municipality_of_origin = models.CharField(
-        _('municipality_of_origin'),
-        max_length=255
-    )
-
-    sex = models.CharField(
-        _('sex'),
-        max_length=1,
-        choices=SEX
-    )
-
-    age = models.PositiveSmallIntegerField(
-        _('age'),
-    )
-
-    entrance_exam_score = models.DecimalField(
-        _('entrance_exam_score'),
-        max_digits=4,
-        decimal_places=2
-    )
+    created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.first_name + self.last_name
+        return self.no_control
+
+    class Meta:
+        ordering = ['created_at']
