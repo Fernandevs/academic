@@ -18,6 +18,7 @@ from django.urls import path
 from home.views import *
 
 urlpatterns = [
-    path('logout/', logout, name='logout'),
     path('', login, name='login'),
+    path('404/', not_found, name='404_not_found'),
+    path('logout/', logout, name='logout'),
 ]
