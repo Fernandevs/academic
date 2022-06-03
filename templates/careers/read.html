@@ -1,60 +1,35 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'read.html' %}
 
-{% block head %}
-	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+{% block th %}
+	<th class="border-top-0">#</th>
+	<th class="border-top-0">Carrera</th>
+	<th class="border-top-0">Está activa</th>
 {% endblock %}
 
-{% block title %}
-	{{ title }}
-{% endblock %}
-
-{% block content %}
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="white-box">
-				<h3 class="box-title">Carreras</h3>
-				<div class="table-responsive">
-					<table class="table text-nowrap">
-						<thead>
-						<tr>
-							<th class="border-top-0">#</th>
-							<th class="border-top-0">Carrera</th>
-							<th class="border-top-0">Está activa</th>
-						</tr>
-						</thead>
-						<tbody>
-						{% for career in career_list %}
-							<tr>
-								<td>{{ career.id }}</td>
-								<td>{{ career.career }}</td>
-								{% if career.is_active %}
-									<td>Sí</td>
-								{% else %}
-									<td>No</td>
-								{% endif %}
-								<td>
-									<a href="{% url 'update_career' career.id %}">
-										<button type="button" class="btn btn-warning btn-xs btn-flat">
-											<i class="fas fa-pencil-alt" style="color: white"></i>
-										</button>
-									</a>
-									<a href="{% url 'delete_career' career.id %}">
-										<button type="button" class="btn btn-danger btn-xs btn-flat">
-											<i class="fas fa-trash-alt" style="color: white"></i>
-										</button>
-									</a>
-								</td>
-							</tr>
-						{% endfor %}
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<a href="{% url 'create_career' %}">
-				<button type="button" class="btn btn-primary">Agregar</button>
+{% block foreach %}
+	<tr>
+		<td>{{ object.id }}</td>
+		<td>{{ object.career }}</td>
+		{% if object.is_active %}
+			<td>Sí</td>
+		{% else %}
+			<td>No</td>
+		{% endif %}
+		<td>
+			<a href="{% url 'update_career' object.id %}">
+				<button type="button" class="btn btn-warning btn-xs btn-flat">
+					<i class="fas fa-pencil-alt" style="color: white"></i>
+				</button>
 			</a>
-		</div>
-	</div>
+			<a href="{% url 'delete_career' object.id %}">
+				<button type="button" class="btn btn-danger btn-xs btn-flat">
+					<i class="fas fa-trash-alt" style="color: white"></i>
+				</button>
+			</a>
+		</td>
+	</tr>
+{% endblock %}
+
+{% block create %}
+	{% url 'create_career' %}
 {% endblock %}

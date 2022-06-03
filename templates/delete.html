@@ -8,13 +8,17 @@
 
 {% block content %}
 	<div class="container mt-3 white-box">
-		<h3 class="box-title">Eliminar libro</h3>
+		<h3 class="box-title">
+			{% block body_title %}
+				{{ title }}
+			{% endblock %}
+		</h3>
 		<form method="post">
 			{% csrf_token %}
 			<p>¿Está seguro de eliminar "{{ object }}"?</p>
 			{{ form|crispy }}
 			<input type="submit" value="Confirmar" class="btn btn-info" style="color: white">
-			<a href="{% url 'list_book' %}">
+			<a href="{% block cancel %}{% endblock %}">
 				<input type="button" value="Cancelar" class="btn btn-danger" style="color: white">
 			</a>
 		</form>

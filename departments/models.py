@@ -11,6 +11,7 @@ class Department(models.Model):
     department_name = models.CharField(
         _("department name"),
         max_length=255,
+        unique=True,
         validators=[name_validator]
     )
 

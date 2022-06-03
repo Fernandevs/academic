@@ -1,72 +1,45 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'read.html' %}
 
-{% block head %}
-	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+{% block th %}
+	<th class="border-top-0">#</th>
+	<th class="border-top-0">Username</th>
+	<th class="border-top-0">Nombre(s)</th>
+	<th class="border-top-0">Apellidos</th>
+	<th class="border-top-0">Correo</th>
+	<th class="border-top-0">Rol</th>
 {% endblock %}
 
-{% block title %}
-	{{ title }}
+{% block foreach %}
+	<tr>
+		<td>{{ object.id }}</td>
+		<td>{{ object.username }}</td>
+		<td>{{ object.first_name }}</td>
+		<td>{{ object.last_name }}</td>
+		<td>{{ object.email }}</td>
+		<td>
+			{% if object.is_superuser %}
+				Administrador
+			{% else %}
+				{{ object.groups.alias.get }}
+			{% endif %}
+		</td>
+		{% if not object.is_superuser %}
+			<td>
+				<a href="{% url 'update_user' object.id %}">
+					<button type="button" class="btn btn-warning btn-xs btn-flat">
+						<i class="fas fa-pencil-alt" style="color: white"></i>
+					</button>
+				</a>
+				<a href="{% url 'delete_user' object.id %}">
+					<button type="button" class="btn btn-danger btn-xs btn-flat">
+						<i class="fas fa-trash-alt" style="color: white"></i>
+					</button>
+				</a>
+			</td>
+		{% endif %}
+	</tr>
 {% endblock %}
 
-{% block content %}
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="white-box">
-				<h3 class="box-title">Usuarios</h3>
-				<div class="table-responsive">
-					<table class="table text-nowrap">
-						<thead>
-						<tr>
-							<th class="border-top-0">#</th>
-							<th class="border-top-0">Username</th>
-							<th class="border-top-0">Nombre(s)</th>
-							<th class="border-top-0">Apellidos</th>
-							<th class="border-top-0">Correo</th>
-							<th class="border-top-0">Rol</th>
-							<th class="border-top-0">Acciones</th>
-						</tr>
-						</thead>
-						<tbody>
-
-						{% for user in user_list %}
-							<tr>
-								<td>{{ user.id }}</td>
-								<td>{{ user.username }}</td>
-								<td>{{ user.first_name }}</td>
-								<td>{{ user.last_name }}</td>
-								<td>{{ user.email }}</td>
-								<td>
-									{% if user.is_superuser %}
-										Administrador
-									{% else %}
-										{{ user.groups.alias.get }}
-									{% endif %}
-								</td>
-								{% if not user.is_superuser %}
-									<td>
-										<a href="{% url 'update_user' user.id %}">
-											<button type="button" class="btn btn-warning btn-xs btn-flat">
-												<i class="fas fa-pencil-alt" style="color: white"></i>
-											</button>
-										</a>
-										<a href="{% url 'delete_user' user.id %}">
-											<button type="button" class="btn btn-danger btn-xs btn-flat">
-												<i class="fas fa-trash-alt" style="color: white"></i>
-											</button>
-										</a>
-									</td>
-								{% endif %}
-							</tr>
-						{% endfor %}
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<a href="{% url 'create_user' %}">
-				<button type="button" class="btn btn-primary">Agregar</button>
-			</a>
-		</div>
-	</div>
+{% block create %}
+	{% url 'create_user' %}
 {% endblock %}

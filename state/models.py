@@ -10,6 +10,7 @@ class State(models.Model):
     state_name = models.CharField(
         _("state"),
         max_length=255,
+        unique=True,
         null=False,
         blank=False,
         validators=[name_validator]

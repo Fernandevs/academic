@@ -1,60 +1,35 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'read.html' %}
 
-{% block head %}
-	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+{% block th %}
+	<th class="border-top-0">#</th>
+	<th class="border-top-0">Matricula</th>
+	<th class="border-top-0">Nombre</th>
+	<th class="border-top-0">Apellido paterno</th>
+	<th class="border-top-0">Apellido materno</th>
 {% endblock %}
 
-{% block title %}
-	{{ title }}
-{% endblock %}
-
-{% block content %}
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="white-box">
-				<h3 class="box-title">Estudiantes</h3>
-				<div class="table-responsive">
-					<table class="table text-nowrap">
-						<thead>
-						<tr>
-							<th class="border-top-0">#</th>
-							<th class="border-top-0">Matricula</th>
-							<th class="border-top-0">Nombre</th>
-							<th class="border-top-0">Apellido paterno</th>
-							<th class="border-top-0">Apellido materno</th>
-						</tr>
-						</thead>
-						<tbody>
-						{% for student in student_list %}
-							<tr>
-							<td>{{ student.id }}</td>
-							<td>{{ student.matricula }}</td>
-							<td>{{ student.nombre }}</td>
-							<td>{{ student.ape_pat }}</td>
-							<td>{{ student.ape_mat }}</td>
-								<td>
-									<a href="{% url 'update_student' student.id %}">
-										<button type="button" class="btn btn-warning btn-xs btn-flat">
-											<i class="fas fa-pencil-alt" style="color: white"></i>
-										</button>
-									</a>
-									<a href="{% url 'delete_student' student.id %}">
-										<button type="button" class="btn btn-danger btn-xs btn-flat">
-											<i class="fas fa-trash-alt" style="color: white"></i>
-										</button>
-									</a>
-								</td>
-							</tr>
-						{% endfor %}
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<a href="{% url 'massive_student' %}">
-				<button type="button" class="btn btn-primary">Agregar</button>
+{% block foreach %}
+	<tr>
+		<td>{{ object.id }}</td>
+		<td>{{ object.matricula }}</td>
+		<td>{{ object.nombre }}</td>
+		<td>{{ object.ape_pat }}</td>
+		<td>{{ object.ape_mat }}</td>
+		<td>
+			<a href="{% url 'update_student' object.id %}">
+				<button type="button" class="btn btn-warning btn-xs btn-flat">
+					<i class="fas fa-pencil-alt" style="color: white"></i>
+				</button>
 			</a>
-		</div>
-	</div>
+			<a href="{% url 'delete_student' object.id %}">
+				<button type="button" class="btn btn-danger btn-xs btn-flat">
+					<i class="fas fa-trash-alt" style="color: white"></i>
+				</button>
+			</a>
+		</td>
+	</tr>
+{% endblock %}
+
+{% block create %}
+	{% url 'massive_student' %}
 {% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+{% endblock %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="white-box">
+				<h3 class="box-title">
+					{% block body_title %}
+						{{ title }}
+					{% endblock %}
+				</h3>
+				{% block table_container %}
+					<div class="table-responsive">
+						{% block table %}
+							<table class="table text-nowrap">
+								{% block thead %}
+									<thead>
+									{% block theadtr %}
+										<tr>
+											{% block th %}{% endblock %}
+											<th class="border-top-0">
+												{% block table_title %}Acciones{% endblock %}
+											</th>
+										</tr>
+									{% endblock %}
+									</thead>
+								{% endblock %}
+								<tbody>
+								{% block tbody %}
+									{% for object in object_list %}
+										{% block foreach %}
+										{% endblock %}
+									{% endfor %}
+								{% endblock %}
+								</tbody>
+							</table>
+						{% endblock %}
+					</div>
+				{% endblock %}
+			</div>
+			<a href="{% block create %}{% endblock %}">
+				<button type="button" class="btn btn-primary">Agregar</button>
+			</a>
+		</div>
+	</div>
+{% endblock %}

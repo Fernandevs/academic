@@ -11,12 +11,20 @@ class Career(models.Model):
         _("career"),
         max_length=255,
         unique=True,
+        error_messages={
+            "unique": _("Ya existe esta carrera."),
+        },
         null=False,
         blank=False,
         validators=[name_validator]
     )
 
-    is_active = models.BooleanField(default=True, null=False, blank=False)
+    is_active = models.BooleanField(
+        _("is active"),
+        default=True,
+        null=False,
+        blank=False
+    )
 
     def __str__(self):
         return self.career

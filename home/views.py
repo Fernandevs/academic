@@ -1,5 +1,4 @@
 import django.contrib.auth
-from axes.decorators import axes_dispatch
 
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
@@ -7,11 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
-
 # Create your views here.
-from django.views.defaults import page_not_found
 
 
 def login(request):
