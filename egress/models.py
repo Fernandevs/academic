@@ -3,7 +3,7 @@ import datetime
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 
-from academic.options import DEGREE_OPTIONS, EGRESS_PERIOD
+from academic.options import DEGREE_OPTIONS, PERIOD
 from careers.models import Career
 
 # Create your models here.
@@ -45,7 +45,7 @@ class Egress(models.Model):
 
     egress_period = models.PositiveSmallIntegerField(
         _('egress period'),
-        choices=EGRESS_PERIOD
+        choices=PERIOD
     )
 
     egress_year = models.DateField(
