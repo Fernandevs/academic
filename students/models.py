@@ -1073,24 +1073,23 @@ class Student(models.Model):
 
     no_control = models.CharField(
         _('Número de control'),
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
         max_length=14
     )
 
     year = models.PositiveIntegerField(
         _('Año'),
         null=False,
-        blank=True,
+        blank=False,
         validators=[number_validator, year_validator],
         default=now().year
     )
 
     ingreso = models.BooleanField(
         _('Ingreso'),
-        null=False,
-        blank=False,
-        default=True
+        null=True,
+        blank=True
     )
 
     ingreso_periodo = models.CharField(
@@ -1099,14 +1098,12 @@ class Student(models.Model):
         blank=True,
         max_length=1,
         choices=PERIOD,
-        default='2'
     )
 
     egreso = models.BooleanField(
         _('Egreso'),
-        null=False,
-        blank=False,
-        default=True
+        null=True,
+        blank=True
     )
 
     egreso_periodo = models.CharField(
@@ -1114,22 +1111,19 @@ class Student(models.Model):
         null=True,
         blank=True,
         max_length=1,
-        choices=PERIOD,
-        default='2'
+        choices=PERIOD
     )
 
     degree = models.BooleanField(
         _('Titulado'),
         null=False,
-        blank=False,
-        default=True
+        blank=False
     )
 
     titulado_op = models.CharField(
         _('Opción de titulación'),
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
         max_length=1,
-        choices=DEGREE_OPTIONS,
-        default='1'
+        choices=DEGREE_OPTIONS
     )

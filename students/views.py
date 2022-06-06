@@ -249,9 +249,9 @@ class StudentMassiveCreateView(
                     degree = False
 
                 else:
-                    ingreso = row['INGRESO'] if 'INGRESO' in row else False
-                    egreso = row['EGRESO'] if 'EGRESO' in row else False
-                    degree = row['TITULACION'] if 'TITULACION' in row else False
+                    ingreso = row['INGRESO'] if 'INGRESO' in row else None
+                    egreso = row['EGRESO'] if 'EGRESO' in row else None
+                    degree = row['TITULACION'] if 'TITULACION' in row else None
 
                 student = Student(
                     tipo_exa=tipo_exa,
