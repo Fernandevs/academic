@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
 
 from academic.options import *
@@ -349,10 +350,10 @@ class Student(models.Model):
         choices=TURNO
     )  # ¿En qué turno estudió el último año del nivel medio superior?
 
-    prom_bac = models.DecimalField(
+    prom_bac = models.FloatField(
         _('Promedio final media superior'),
-        max_digits=2,
-        decimal_places=1,
+        null=False,
+        blank=False,
         default=6.0
     )
     """
@@ -972,61 +973,47 @@ class Student(models.Model):
         blank=False
     )  # Calificación en índice CENEVAL del examen de admisión
 
-    percen = models.DecimalField(
+    percen = models.FloatField(
         _('Percentil del examen de admisión'),
         null=True,
-        blank=True,
-        max_digits=3,
-        decimal_places=2
+        blank=True
     )  # Percentil del examen de admisión
 
-    porcecne = models.DecimalField(
+    porcecne = models.FloatField(
         _('% > cne del examen de admisión'),
         null=True,
-        blank=True,
-        max_digits=3,
-        decimal_places=2
+        blank=True
     )  # % > cne del examen de admisión
 
-    pcne = models.DecimalField(
+    pcne = models.FloatField(
         _('Calificación en porcentaje de aciertos del examen de admisión'),
         null=True,
-        blank=True,
-        max_digits=3,
-        decimal_places=2
+        blank=True
     )  # Calificación en porcentaje de aciertos del examen de admisión
 
     # Calificación en porcentaje de aciertos del examen de Admisión
-    ppma = models.DecimalField(
+    ppma = models.FloatField(
         _('Calificación de pensamiento matemático en porcentaje de aciertos'),
         null=True,
-        blank=True,
-        max_digits=3,
-        decimal_places=2
+        blank=True
     )  # Calificación de pensamiento matemático en porcentaje de aciertos
 
-    ppan = models.DecimalField(
+    ppan = models.FloatField(
         _('Calificación de pensamiento analítico en porcentaje de aciertos'),
         null=True,
-        blank=True,
-        max_digits=3,
-        decimal_places=2
+        blank=True
     )  # Calificación de pensamiento analítico en porcentaje de aciertos
 
-    pele = models.DecimalField(
+    pele = models.FloatField(
         _('Calificación de estructura de la lengua en porcentaje de aciertos'),
         null=True,
-        blank=True,
-        max_digits=3,
-        decimal_places=2
+        blank=True
     )  # Calificación de estructura de la lengua en porcentaje de aciertos
 
-    pcle = models.DecimalField(
+    pcle = models.FloatField(
         _('Calificación de comprensión lectora en porcentaje de aciertos'),
         null=True,
-        blank=True,
-        max_digits=3,
-        decimal_places=2
+        blank=True
     )  # Calificación de comprensión lectora en porcentaje de aciertos
 
     # Calificación en índice Ceneval del examen de Admisión
@@ -1091,44 +1078,58 @@ class Student(models.Model):
         max_length=14
     )
 
-    ingreso = models.CharField(
+    year = models.PositiveIntegerField(
+        _('Año'),
+        null=False,
+        blank=True,
+        validators=[number_validator, year_validator],
+        default=now().year
+    )
+
+    ingreso = models.BooleanField(
         _('Ingreso'),
         null=False,
         blank=False,
-        max_length=4,
-        validators=[number_validator, year_validator]
+        default=True
     )
 
     ingreso_periodo = models.CharField(
         _('Periodo de ingreso'),
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
         max_length=1,
         choices=PERIOD,
         default='2'
     )
 
-    egreso = models.CharField(
+    egreso = models.BooleanField(
         _('Egreso'),
         null=False,
         blank=False,
-        max_length=4,
-        validators=[number_validator, year_validator]
+        default=True
     )
 
     egreso_periodo = models.CharField(
         _('Periodo de egreso'),
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
         max_length=1,
         choices=PERIOD,
         default='2'
     )
 
-    titulado = models.CharField(
-        _('titulado'),
+    degree = models.BooleanField(
+        _('Titulado'),
         null=False,
         blank=False,
-        max_length=4,
-        choices=DEGREE_OPTIONS
+        default=True
+    )
+
+    titulado_op = models.CharField(
+        _('Opción de titulación'),
+        null=False,
+        blank=False,
+        max_length=1,
+        choices=DEGREE_OPTIONS,
+        default='1'
     )

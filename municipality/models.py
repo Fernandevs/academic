@@ -10,7 +10,6 @@ from state.models import State
 class Municipality(models.Model):
     municipality_id = models.CharField(
         _('id municipality'),
-        primary_key=True,
         null=False,
         blank=False,
         max_length=3,

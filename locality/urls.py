@@ -21,6 +21,7 @@ from locality.views import *
 urlpatterns = [
     path('localities/list/', LocalityListView.as_view(), name='list_locality'),
     path('localities/create/', LocalityCreateView.as_view(), name='create_locality'),
+    path('localities/massive/', LocalityMassiveTemplateView.as_view(), name='massive_locality'),
     path('localities/update/<int:pk>/', LocalityUpdateView.as_view(), name='update_locality'),
     path('localities/delete/<int:pk>/', LocalityDeleteView.as_view(), name='delete_locality'),
 ]

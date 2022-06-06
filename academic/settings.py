@@ -105,7 +105,7 @@ WSGI_APPLICATION = 'academic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ejemplo',
+        'NAME': 'academic',
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost',

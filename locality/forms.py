@@ -1,4 +1,4 @@
-from django.forms import models
+from django.forms import models, forms
 
 from locality.models import Locality
 
@@ -10,6 +10,8 @@ class LocalityForm(models.ModelForm):
         fields = '__all__'
 
         labels = {
+            'locality_id': 'ID',
             'locality_name': 'Localidad',
-            'municipality': 'Municipio'
+            'municipality': 'Municipio',
+            'state': 'Estado'
         }

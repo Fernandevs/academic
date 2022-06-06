@@ -21,6 +21,7 @@ from state.views import *
 urlpatterns = [
     path('states/list/', StateListView.as_view(), name='list_state'),
     path('states/create/', StateCreateView.as_view(), name='create_state'),
-    path('states/update/<int:pk>/', StateUpdateView.as_view(), name='update_state'),
-    path('states/delete/<int:pk>/', StateDeleteView.as_view(), name='delete_state'),
+    path('states/massive/', StateMassiveTemplateView.as_view(), name='massive_state'),
+    path('states/update/<str:pk>/', StateUpdateView.as_view(), name='update_state'),
+    path('states/delete/<str:pk>/', StateDeleteView.as_view(), name='delete_state'),
 ]

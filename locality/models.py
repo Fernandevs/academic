@@ -11,8 +11,6 @@ from state.models import State
 class Locality(models.Model):
     locality_id = models.CharField(
         _('id locality'),
-        primary_key=True,
-        unique=False,
         null=False,
         blank=False,
         max_length=4,

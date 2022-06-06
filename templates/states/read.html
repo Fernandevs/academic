@@ -7,15 +7,15 @@
 
 {% block foreach %}
 	<tr>
-		<td>{{ object.id }}</td>
+		<td>{{ object.state_id }}</td>
 		<td>{{ object.state_name }}</td>
 		<td>
-			<a href="{% url 'update_state' object.id %}">
+			<a href="{% url 'update_state' object.state_id %}">
 				<button type="button" class="btn btn-warning btn-xs btn-flat">
 					<i class="fas fa-pencil-alt" style="color: white"></i>
 				</button>
 			</a>
-			<a href="{% url 'delete_state' object.id %}">
+			<a href="{% url 'delete_state' object.state_id %}">
 				<button type="button" class="btn btn-danger btn-xs btn-flat">
 					<i class="fas fa-trash-alt" style="color: white"></i>
 				</button>

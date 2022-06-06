@@ -34,8 +34,8 @@ class UserUpdateForm(UserChangeForm):
             'username',
             'last_name',
             'email',
-            'user_image',
             'groups',
+            'user_image',
             'is_superuser'
         ]
 
@@ -43,7 +43,7 @@ class UserUpdateForm(UserChangeForm):
             'username': 'Nombre de usuario',
             'last_name': 'Apellidos',
             'email': 'Correo',
-            'user_image': 'Imagen de perfil',
             'groups': 'Rol',
+            'user_image': 'Imagen de perfil',
             'is_superuser': 'Es administrador'
         }

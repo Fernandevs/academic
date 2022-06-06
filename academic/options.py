@@ -150,6 +150,15 @@ REG_PROC = (
     ('3', 'Federal por cooperación')
 )
 
+ROLES = (
+    (1, 'Jefe de proyecto de investigación'),
+    (2, 'Jefe de proyecto de docencia'),
+    (3, 'Jefe de departamento académico'),
+    (4, 'Jefe de vinculación de planeación'),
+    (5, 'Subdirector'),
+    (6, 'Director')
+)
+
 SES_EJE = (
     ('1', 'No hago ejercicio'),
     ('2', 'Menos de 30 minutos'),

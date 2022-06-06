@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+	<form method="post" id="form-cargar-file" enctype="multipart/form-data">{% csrf_token %}
+		<div class="row">
+			{% block year %}
+				<div class="col-sm-12">
+					<label>Año:</label>
+					<select class="form-select" aria-label="Default select example" id="year" name="year">
+						{% for i in range %}
+							{% if not i == year %}
+								<option value="{{ i }}">{{ i }}</option>
+							{% else %}
+								<option value="{{ i }}" selected>{{ i }}</option>
+							{% endif %}
+						{% endfor %}
+					</select>
+				</div>
+			{% endblock %}
+			{% block period %}
+				<div class="col-sm-12">
+					<label>Periodo:</label>
+					<select class="form-select" aria-label="Default select example">
+						<option value="1">Enero-Junio</option>
+						<option value="2">Agosto-Diciembre</option>
+					</select>
+				</div>
+			{% endblock %}
+			{% block file %}
+				<div class="col-sm-12">
+					<label>Cargar Archivo CSV:</label>
+					<input type="file" id="file" class="form-control" name="file_name" accept=".csv" required>
+				</div>
+			{% endblock %}
+			<div class="col-sm-12 mt-4">
+				<button type="submit" class="btn btn-primary" id="btn-cargar">Cargar datos</button>
+			</div>
+		</div>
+	</form>
+{% endblock %}

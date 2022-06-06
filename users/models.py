@@ -1,10 +1,8 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 
 from academic.validators import name_validator
-from academic.options import *
-
 
 # Create your models here.
 
@@ -38,42 +36,13 @@ class User(AbstractUser):
         help_text=_("Opcional. Foto de perfil del usuario."),
     )
 
+    groups = models.ForeignKey(
+        Group,
+        models.CASCADE,
+        _('role'),
+        null=True,
+        blank=True
+    )
+
     def __str__(self):
         return self.username
-
-
-class HeadOfResearchProject(User):
-    is_staff = False
-    is_superuser = False
-    pass
-
-
-class HeadOfTeachingProject(User):
-    is_staff = False
-    is_superuser = False
-    pass
-
-"""
-class State(models.Model):
-    state_name = models.CharField(
-        _("state name"),
-        max_length=255,
-        validators=[name_validator]
-    )
-
-
-class Municipality(models.Model):
-    municipality_name = models.CharField(
-        _("municipality name"),
-        max_length=255,
-        validators=[name_validator],
-    )
-
-
-class Locality(models.Model):
-    locality_name = models.CharField(
-        _("locality name"),
-        max_length=255,
-        validators=[name_validator],
-    )
-"""

@@ -20,7 +20,7 @@
 			{% if object.is_superuser %}
 				Administrador
 			{% else %}
-				{{ object.groups.alias.get }}
+				{{ object.groups }}
 			{% endif %}
 		</td>
 		{% if not object.is_superuser %}
