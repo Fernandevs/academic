@@ -136,3 +136,26 @@ a.socialIcon:hover,
     transition: all 0.8s;
     transition: all 0.8s
 }
+
+.nav-link.active{
+    background-color: #707cd2 !important;
+    color: white !important;   
+    border-radius: 3px; 
+}
+.nav-link.active:hover{   
+    color: white !important;   
+}
+
+.nav-item{
+    color: #707cd2;
+}
+.nav-item:hover{
+    color: #0a58ca;
+}
+
+.nav-link{
+    color:inherit;
+}
+.nav-link:hover{
+    color:inherit;
+}

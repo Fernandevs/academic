@@ -22,6 +22,7 @@ urlpatterns = [
     path('academic/', include('careers.urls')),
     path('academic/', include('dashboard.urls')),
     path('academic/', include('departments.urls')),
+    path('academic/', include('graphs.urls')),
     path('academic/', include('locality.urls')),
     path('academic/', include('municipality.urls')),
     path('academic/', include('school.urls')),

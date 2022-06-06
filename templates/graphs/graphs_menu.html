@@ -1,0 +1,318 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_filters %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+	<div class="container mt-3 white-box">
+		<h3 class="box-title">Gráficas de Estadísticas Académicas</h3>
+		<div class="card-header p-2">
+			<ul class="nav nav-pills">
+			   <li class="nav-item"><a class="nav-link active" href="#icne" data-toggle="tab">ICNE</a></li>
+			   <li class="nav-item"><a class="nav-link" href="#exa_ext" data-toggle="tab">Exámenes Extraordinarios</a></li>
+			</ul>
+		</div>
+		<div class="tab-content">
+			{% csrf_token %}
+			<div class="tab-pane active" id="icne">
+				<div class="row">
+					<div class="form-group mt-2 col-3">
+						<label for="grupoICNE">Alumnos: </label>
+						<select id="grupoICNE" name="grupoICNE" class="form-control">
+							<option value="" selected>Todos</option>
+							<option value="0">Ingreso</option>
+							<option value="1">Egreso</option>
+							<option value="2">Titulados</option>
+						</select>
+					</div>
+					<div class="form-group mt-2 col-3">
+						<label for="periodoICNE">Periodo: </label>
+						<select id="periodoICNE" name="periodoICNE" class="form-control">
+							<option value="" selected>Todos</option>
+							<option value="0">Agosto - Diciembre</option>
+							<option value="2">Enero - Junio</option>
+						</select>
+					</div>
+					<div class="form-group mt-2 col-3">
+						<label for="ano_curICNE">Año: </label>
+						<select id="ano_curICNE" name="ano_curICNE" class="form-control">
+							<option selected value="0">Todos</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+					</div>
+				</div>	
+				<div style="height: 400px; padding-bottom:40px" class="mb-3">
+					
+						<button type="button" class="btn btn-primary" id="graficarICNE">Graficar</button>		
+						<canvas id="Chart-icne" style="">holis</canvas>
+						<label id="labelICNE" for="labelICNE"></label>
+				</div>	
+			</div>
+
+			<div class="tab-pane" id="exa_ext">
+				<div class="row">
+					<div class="form-group mt-2 col-3">
+						<label for="grupoExa_ext">Alumnos: </label>
+						<select id="grupoExa_ext" name="grupoExa_ext" class="form-control">
+							<option value="" selected>Todos</option>
+							<option value="0">Ingreso</option>
+							<option value="1">Egreso</option>
+							<option value="2">Titulados</option>
+						</select>
+					</div>
+					<div class="form-group mt-2 col-3">
+						<label for="periodoExa_ext">Periodo: </label>
+						<select id="periodoExa_ext" name="periodoExa_ext" class="form-control">
+							<option value="" selected>Todos</option>
+							<option value="0">Agosto - Diciembre</option>
+							<option value="2">Enero - Junio</option>
+						</select>
+					</div>
+					<div class="form-group mt-2 col-3">
+						<label for="ano_curExa_ext">Año: </label>
+						<select id="ano_curExa_ext" name="ano_curExa_ext" class="form-control">
+							<option selected value="0">Todos</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+					</div>
+				</div>	
+				<div style="height: 400px; padding-bottom:40px" class="mb-3">
+					
+						<button type="button" class="btn btn-primary" id="graficarExa_ext">Graficar</button>		
+						<canvas id="Chart-Exa_ext" style=""></canvas>
+						<label id="labelExa_ext" for="labelExa_ext"></label>
+				</div>	
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block js %}
+<script>
+	var chrtICNE = document.getElementById("Chart-icne").getContext('2d');
+	var BarChartICNE = new Chart(chrtICNE, {
+	type: 'bar',
+	data: {
+		labels: ["700-800", "800-900", "900-1000", "1000-1100", "1100-1200", "1200-1300"],
+		datasets: [{
+		label: '# de estudiantes por calificación del ICNE',
+		data: [],
+		backgroundColor: [
+			'rgba(255, 99, 132, 0.2)',
+			'rgba(54, 162, 235, 0.2)',
+			'rgba(255, 206, 86, 0.2)',
+			'rgba(75, 192, 192, 0.2)',
+			'rgba(153, 102, 255, 0.2)',
+			'rgba(255, 159, 64, 0.2)'
+		],
+		borderColor: [
+			'rgba(255,99,132,1)',
+			'rgba(54, 162, 235, 1)',
+			'rgba(255, 206, 86, 1)',
+			'rgba(75, 192, 192, 1)',
+			'rgba(153, 102, 255, 1)',
+			'rgba(255, 159, 64, 1)'
+		],
+		borderWidth: 1
+		}]
+	},
+	options: {
+		scales: {
+			yAxes: [{
+				ticks: {
+				beginAtZero: true
+				}
+			}]
+		},
+		responsive: true,
+    	maintainAspectRatio: false
+	}
+	})
+
+	function validateFormICNE() {
+		let grupo = jQuery('#grupoICNE').val();
+		let periodoProcedencia = jQuery('#periodoICNE').val();
+		let ano_curProcedencia = jQuery('#ano_curICNE').val();
+	 
+		var validate = true;
+		if (grupo === "") {
+			validate = false;
+		}
+		if (periodoProcedencia === "" || periodoProcedencia <= 0) {
+			validate = false;
+		}
+		if (ano_curProcedencia === "") {
+			validate = false;
+		}
+		return validate;
+	}
+	
+
+	$('#graficarICNE').on('click', function(e) {
+		console.log("aaaaaaas")
+		e.preventDefault();
+		if(validateFormICNE){
+	 
+			let formData = {
+				grupo : jQuery('#grupoICNE').val(),
+		 		periodo : jQuery('#periodoICNE').val(),
+		 		ano_cur : jQuery('#ano_curICNE').val(),
+			};
+	 
+			console.log(formData)
+	 
+			$.ajax({
+				url: "{% url 'getICNEGraphData' %}",
+				data: formData,
+				method: "POST",
+				async: false,
+				headers: {
+					'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+				},
+				mode: 'same-origin',
+				success: function(data) {
+					if (data) {
+						console.log(data)
+						BarChartICNE.data.datasets.forEach((dataset) => {
+							dataset.data =data.icne;
+						});
+						BarChartICNE.update();
+						$('#labelICNE').html(
+							'Total de estudiantes: ' +data.cant
+						);
+					}
+				},
+				error: function(error) {
+					console.log(error);
+				}
+			});
+		} else {
+			Swal.fire({
+							 text: "Todos los campos son necesarios",
+							 icon: 'error',
+					 })
+		}
+	});
+
+	var chrtExa_ext = document.getElementById("Chart-Exa_ext").getContext('2d');
+	var BarChartExa_ext = new Chart(chrtExa_ext, {
+	type: 'bar',
+	data: {
+		labels: ["Ninguno", "1", "2", "3", "4", "5", "6"],
+		datasets: [{
+		label: '# de estudiantes por # de exámenes extraordinarios presentados',
+		data: [],
+		backgroundColor: [
+			'rgba(255, 99, 132, 0.2)',
+			'rgba(54, 162, 235, 0.2)',
+			'rgba(255, 206, 86, 0.2)',
+			'rgba(75, 192, 192, 0.2)',
+			'rgba(153, 102, 255, 0.2)',
+			'rgba(255, 159, 64, 0.2)'
+		],
+		borderColor: [
+			'rgba(255,99,132,1)',
+			'rgba(54, 162, 235, 1)',
+			'rgba(255, 206, 86, 1)',
+			'rgba(75, 192, 192, 1)',
+			'rgba(153, 102, 255, 1)',
+			'rgba(255, 159, 64, 1)'
+		],
+		borderWidth: 1
+		}]
+	},
+	options: {
+		scales: {
+			yAxes: [{
+				ticks: {
+				beginAtZero: true
+				}
+			}]
+		},
+		responsive: true,
+    	maintainAspectRatio: false
+	}
+	});
+
+	function validateFormExa_ext() {
+		let grupo = jQuery('#grupoExa_ext').val();
+		let periodoExa_ext = jQuery('#periodoExa_ext').val();
+		let ano_curExa_ext = jQuery('#ano_curExa_ext').val();
+	 
+		var validate = true;
+		if (grupo === "") {
+			validate = false;
+		}
+		if (periodoExa_ext === "" || periodoExa_ext <= 0) {
+			validate = false;
+		}
+		if (ano_curExa_ext === "") {
+			validate = false;
+		}
+		return validate;
+	}
+	
+
+	$('#graficarExa_ext').on('click', function(e) {
+		e.preventDefault();
+		if(validateFormExa_ext){
+	 
+			let formData = {
+				grupo : jQuery('#grupoExa_ext').val(),
+		 		periodo : jQuery('#periodoExa_ext').val(),
+		 		ano_cur : jQuery('#ano_curExa_ext').val(),
+			};
+	 
+			console.log(formData)
+	 
+			$.ajax({
+				url: "{% url 'getExaExtGraphData' %}",
+				data: formData,
+				method: "POST",
+				async: false,
+				headers: {
+					'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+				},
+				mode: 'same-origin',
+				success: function(data) {
+					if (data) {
+						console.log(data)
+						BarChartExa_ext.data.datasets.forEach((dataset) => {
+							dataset.data =data.exa_ext;
+						});
+						BarChartExa_ext.update();
+						$('#labelExa_ext').html(
+							'Total de estudiantes: ' +data.cant
+						);
+					}
+				},
+				error: function(error) {
+					console.log(error);
+				}
+			});
+		} else {
+			Swal.fire({
+							 text: "Todos los campos son necesarios",
+							 icon: 'error',
+					 })
+		}
+	}); 
+	
+	
+</script>
+{% endblock %}
