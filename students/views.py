@@ -241,7 +241,11 @@ class StudentMassiveCreateView(
                 ddd_mg_les = row['DDD_MG_LES'] if 'DDD_MG_LES' in row else None
                 ddd_mg_ing = row['DDD_MG_ING'] if 'DDD_MG_ING' in row else None
                 no_control = row['NO DE CONTROL'] if 'NO DE CONTROL' in row else None
-                year = request.POST['year'] if 'year' in request.POST else now().year
+
+                if 'ANO_CUR' in row:
+                    year = row['ANO_CUR']
+                else:
+                    year = request.POST['year'] if 'year' in request.POST else now().year
 
                 if not no_control:
                     ingreso = False
@@ -251,7 +255,7 @@ class StudentMassiveCreateView(
                 else:
                     ingreso = row['INGRESO'] if 'INGRESO' in row else None
                     egreso = row['EGRESO'] if 'EGRESO' in row else None
-                    degree = row['TITULACION'] if 'TITULACION' in row else None
+                    degree = row['TITULADO'] if 'TITULADO' in row else None
 
                 student = Student(
                     tipo_exa=tipo_exa,

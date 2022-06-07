@@ -29,31 +29,12 @@ def getProcedenceGraphData(request):
 
 def getExaExtGraphData(request):
     if request.method == 'POST':
-        print(request.POST)
         student_goup = request.POST['grupo']
         period = request.POST['periodo']
         anio = request.POST['ano_cur']
-        students = Student.objects.all()
-        
-        if student_goup == '0':
-            students = students.filter(egreso=0)
-        elif student_goup == '1':
-            students = students.filter(egreso=1) 
-        elif student_goup == '2':
-            students = students.filter(titulado=1)   
-
-        if period == '0':
-            students = students.filter(ingreso__in=[0,1])
-        elif period == '2':
-            students = students.filter(ingreso=2)  
-        if period == '0':
-            students = students.filter(ingreso__in=[0,1])
-        
-        if anio != '0':
-            students = students.filter(ano_cur=anio)
+        students = getFilteredData(student_goup, period, anio)
         cant = students.count()
 
-        print(students)
         students1 = students.filter(exa_ext=1).count()
         students2 = students.filter(exa_ext=2).count()
         students3 = students.filter(exa_ext=3).count()
@@ -67,31 +48,12 @@ def getExaExtGraphData(request):
 
 def getICNEGraphData(request):
     if request.method == 'POST':
-        print(request.POST)
         student_goup = request.POST['grupo']
         period = request.POST['periodo']
         anio = request.POST['ano_cur']
-        students = Student.objects.all()
-        
-        if student_goup == '0':
-            students = students.filter(egreso=0)
-        elif student_goup == '1':
-            students = students.filter(egreso=1) 
-        elif student_goup == '2':
-            students = students.filter(titulado=1)   
-
-        if period == '0':
-            students = students.filter(ingreso__in=[0,1])
-        elif period == '2':
-            students = students.filter(ingreso=2)  
-        if period == '0':
-            students = students.filter(ingreso__in=[0,1])
-        
-        if anio != '0':
-            students = students.filter(ano_cur=anio)
+        students = getFilteredData(student_goup, period, anio)
         cant = students.count()
 
-        print(students)
         students8 = students.filter(icne__lte=800).count()
         students9 = students.filter(icne__gte=800).filter(icne__lte=900).count()
         students10 = students.filter(icne__gte=900).filter(icne__lte=1000).count()
@@ -101,3 +63,21 @@ def getICNEGraphData(request):
         icne = [students8, students9, students10, students11, students12, students13]
         #students = Student.objects.aggregate(count(request.POST['procedence_type'])).values(request.POST['procedence_type'])
         return HttpResponse(json.dumps({'icne':icne, 'cant':cant}), 'application/json')
+
+def getFilteredData(student_goup, period, anio):
+    students = Student.objects.all() 
+    if student_goup == '0':
+        students = students.filter(egreso=0)
+    elif student_goup == '1':
+        students = students.filter(egreso=1).filter(degree=0)
+    elif student_goup == '2':
+        students = students.filter(degree=1)   
+
+    if period == '0':
+        students = students.filter(ingreso=0)
+    elif period == '1':
+        students = students.filter(ingreso=1)  
+    
+    if anio != '0':
+        students = students.filter(year=anio)
+    return students
