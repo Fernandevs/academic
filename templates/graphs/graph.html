@@ -13,6 +13,7 @@
 			<ul class="nav nav-pills">
 			   <li class="nav-item"><a class="nav-link active" href="#icne" data-toggle="tab">ICNE</a></li>
 			   <li class="nav-item"><a class="nav-link" href="#exa_ext" data-toggle="tab">Exámenes Extraordinarios</a></li>
+			   <li class="nav-item"><a class="nav-link" href="#ciu_proc" data-toggle="tab">Ciudad de procedencia</a></li>
 			</ul>
 		</div>
 		<div class="tab-content">
@@ -97,6 +98,51 @@
 						<canvas id="Chart-Exa_ext" style=""></canvas>
 						<label id="labelExa_ext" for="labelExa_ext"></label>
 				</div>	
+			</div>
+
+			<div class="tab-pane" id="ciu_proc">
+				<div class="row">
+					<div class="form-group mt-2 col-3">
+						<label for="grupociu_proc">Alumnos: </label>
+						<select id="grupociu_proc" name="grupociu_proc" class="form-control">
+							<option value="" selected>Todos</option>
+							<option value="0">Ingreso</option>
+							<option value="1">Egreso</option>
+							<option value="2">Titulados</option>
+						</select>
+					</div>
+					<div class="form-group mt-2 col-3">
+						<label for="periodociu_proc">Periodo: </label>
+						<select id="periodociu_proc" name="periodociu_proc" class="form-control">
+							<option value="" selected>Todos</option>
+							<option value="0">Agosto - Diciembre</option>
+							<option value="1">Enero - Junio</option>
+						</select>
+					</div>
+					<div class="form-group mt-2 col-3">
+						<label for="ano_curciu_proc">Año: </label>
+						<select id="ano_curciu_proc" name="ano_curciu_proc" class="form-control">
+							<option selected value="0">Todos</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+					</div>
+				</div>	
+				<div style="overflow-x: scroll; height: 500px; width: 100%">
+					<button type="button" class="btn btn-primary" id="graficarciu_proc">Graficar</button>
+					<div id="chart-container-proc" class="chart-container" style="position: relative ;width:auto; height: 400px">
+						
+						<canvas id="Chart-ciu_proc" style=""></canvas>
+						
+					</div>
+					<label id="labelciu_proc" for="labelciu_proc"></label>
+				</div>
+					
 			</div>
 		</div>
 	</div>
@@ -313,6 +359,116 @@
 		}
 	}); 
 	
+	// procedencia ///////////////////////////////////////////////////////////////////////////////////////////////
+
+	var chrtciu_proc = document.getElementById("Chart-ciu_proc").getContext('2d');
+	var BarChartciu_proc = new Chart(chrtciu_proc, {
+	type: 'bar',
+	data: {
+		labels: [],
+		datasets: [{
+		label: '# de estudiantes por Ciudad de Procedencia',
+		data: [],
+		backgroundColor: [
+				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+		],
+		borderColor: [
+			'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
+			'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
+			'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
+			'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
+		],
+		borderWidth: 1
+		}]
+	},
+	options: {
+		scales: {
+			yAxes: [{
+				ticks: {
+				beginAtZero: true
+				}
+			}]
+		},
+		responsive: true,
+    	maintainAspectRatio: false
+	}
+	})
+
+	function validateFormciu_proc() {
+		let grupo = jQuery('#grupociu_proc').val();
+		let periodoProcedencia = jQuery('#periodociu_proc').val();
+		let ano_curProcedencia = jQuery('#ano_curciu_proc').val();
+	 
+		var validate = true;
+		if (grupo === "") {
+			validate = false;
+		}
+		if (periodoProcedencia === "" || periodoProcedencia <= 0) {
+			validate = false;
+		}
+		if (ano_curProcedencia === "") {
+			validate = false;
+		}
+		return validate;
+	}
+	
+
+	$('#graficarciu_proc').on('click', function(e) {
+		console.log("aaaaaaas")
+		e.preventDefault();
+		if(validateFormciu_proc){
+	 
+			let formData = {
+				grupo : jQuery('#grupociu_proc').val(),
+		 		periodo : jQuery('#periodociu_proc').val(),
+		 		ano_cur : jQuery('#ano_curciu_proc').val(),
+			};
+	 
+			console.log(formData)
+	 
+			$.ajax({
+				url: "{% url 'getProcedenceGraphData' %}",
+				data: formData,
+				method: "POST",
+				async: false,
+				headers: {
+					'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+				},
+				mode: 'same-origin',
+				success: function(data) {
+					if (data) {
+						console.log(data)
+						BarChartciu_proc.data.labels = data.labels;
+						BarChartciu_proc.data.datasets.forEach((dataset) => {
+							dataset.data =data.procedence;
+						});
+						BarChartciu_proc.update();
+						$('#labelciu_proc').html(
+							'Total de estudiantes: ' +data.cant
+						);
+						$('#chart-container-proc').css('width', '1800px');
+						$('#chart-container-proc').css('height', '800px');
+						
+					}
+				},
+				error: function(error) {
+					console.log(error);
+				}
+			});
+		} else {
+			Swal.fire({
+							 text: "Todos los campos son necesarios",
+							 icon: 'error',
+					 })
+		}
+	});
 	
 </script>
 {% endblock %}

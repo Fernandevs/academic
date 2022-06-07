@@ -1,3 +1,4 @@
+from cProfile import label
 from django.shortcuts import render
 
 # Create your views here.
@@ -12,20 +13,22 @@ def graphs(request):
 
 def getProcedenceGraphData(request):
     if request.method == 'POST':
-        print(request.POST)
         student_goup = request.POST['grupo']
-        if student_goup == '1':
-            students = Student.objects.filter(ingreso__in=[0,1]).annotate(cantidad=Count('matricula'))
-            #students = Student.objects.aggregate(count(request.POST['procedence_type'])).values(request.POST['procedence_type'])
-            print(json.dumps(students))
-            return HttpResponse(json.dumps(students), 'application/json')
-        else:
-            print("ayyyy")
-            students = Student.objects.filter(ingreso__in=[0,1]).values().annotate(cantidad=Count('matricula')).values_list('cantidad')
-            #students = Student.objects.aggregate(count(request.POST['procedence_type'])).values(request.POST['procedence_type'])
-            print(students)
-            print(json.dumps(list(students)))
-            return HttpResponse(json.dumps(list(students)), 'application/json')\
+        period = request.POST['periodo']
+        anio = request.POST['ano_cur']
+        students = getFilteredData(student_goup, period, anio)
+        cant = students.count()
+
+        students = students.values('ciu_proc').order_by('ciu_proc').annotate(count=Count('ciu_proc'))
+        labels = []
+        procedence =[]
+        for row in students:
+            labels.append(row['ciu_proc'])
+            procedence.append(row['count'])
+        labels[0] = 'DESCONOCIDO' if labels[0] == '' else labels[0]
+
+        return HttpResponse(json.dumps({'procedence':procedence, 'cant':cant, 'labels':labels}), 'application/json')
+
 
 def getExaExtGraphData(request):
     if request.method == 'POST':
