@@ -13,7 +13,11 @@
 			<ul class="nav nav-pills">
 			   <li class="nav-item"><a class="nav-link active" href="#icne" data-toggle="tab">ICNE</a></li>
 			   <li class="nav-item"><a class="nav-link" href="#exa_ext" data-toggle="tab">Exámenes Extraordinarios</a></li>
+			   <li class="nav-item"><a class="nav-link" href="#mat_rep" data-toggle="tab">Materias Reprobadas</a></li>
 			   <li class="nav-item"><a class="nav-link" href="#ciu_proc" data-toggle="tab">Ciudad de procedencia</a></li>
+			   <li class="nav-item"><a class="nav-link" href="#nom_proc" data-toggle="tab">Bachillerato de procedencia</a></li>
+			   <li class="nav-item"><a class="nav-link" href="#reg_proc" data-toggle="tab">Regimen de procedencia</a></li>
+			   <li class="nav-item"><a class="nav-link" href="#mod_bac" data-toggle="tab">Modalidad de Bachillerato</a></li>
 			</ul>
 		</div>
 		<div class="tab-content">
@@ -100,6 +104,47 @@
 				</div>	
 			</div>
 
+			<div class="tab-pane" id="mat_rep">
+				<div class="row">
+					<div class="form-group mt-2 col-3">
+						<label for="grupomat_rep">Alumnos: </label>
+						<select id="grupomat_rep" name="grupomat_rep" class="form-control">
+							<option value="" selected>Todos</option>
+							<option value="0">Ingreso</option>
+							<option value="1">Egreso</option>
+							<option value="2">Titulados</option>
+						</select>
+					</div>
+					<div class="form-group mt-2 col-3">
+						<label for="periodomat_rep">Periodo: </label>
+						<select id="periodomat_rep" name="periodomat_rep" class="form-control">
+							<option value="" selected>Todos</option>
+							<option value="0">Agosto - Diciembre</option>
+							<option value="1">Enero - Junio</option>
+						</select>
+					</div>
+					<div class="form-group mt-2 col-3">
+						<label for="ano_curmat_rep">Año: </label>
+						<select id="ano_curmat_rep" name="ano_curmat_rep" class="form-control">
+							<option selected value="0">Todos</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+					</div>
+				</div>	
+				<div style="height: 400px; padding-bottom:40px" class="mb-3">
+					
+						<button type="button" class="btn btn-primary" id="graficarmat_rep">Graficar</button>		
+						<canvas id="Chart-mat_rep" style=""></canvas>
+						<label id="labelmat_rep" for="labelmat_rep"></label>
+				</div>	
+			</div>
+			
 			<div class="tab-pane" id="ciu_proc">
 				<div class="row">
 					<div class="form-group mt-2 col-3">
@@ -136,13 +181,136 @@
 				<div style="overflow-x: scroll; height: 500px; width: 100%">
 					<button type="button" class="btn btn-primary" id="graficarciu_proc">Graficar</button>
 					<div id="chart-container-proc" class="chart-container" style="position: relative ;width:auto; height: 400px">
-						
-						<canvas id="Chart-ciu_proc" style=""></canvas>
-						
+						<canvas id="Chart-ciu_proc" style=""></canvas>						
 					</div>
 					<label id="labelciu_proc" for="labelciu_proc"></label>
-				</div>
+				</div>					
+			</div>
+
+			<div class="tab-pane" id="nom_proc">
+				<div class="row">
+					<div class="form-group mt-2 col-3">
+						<label for="gruponom_proc">Alumnos: </label>
+						<select id="gruponom_proc" name="gruponom_proc" class="form-control">
+							<option value="" selected>Todos</option>
+							<option value="0">Ingreso</option>
+							<option value="1">Egreso</option>
+							<option value="2">Titulados</option>
+						</select>
+					</div>
+					<div class="form-group mt-2 col-3">
+						<label for="periodonom_proc">Periodo: </label>
+						<select id="periodonom_proc" name="periodonom_proc" class="form-control">
+							<option value="" selected>Todos</option>
+							<option value="0">Agosto - Diciembre</option>
+							<option value="1">Enero - Junio</option>
+						</select>
+					</div>
+					<div class="form-group mt-2 col-3">
+						<label for="ano_curnom_proc">Año: </label>
+						<select id="ano_curnom_proc" name="ano_curnom_proc" class="form-control">
+							<option selected value="0">Todos</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+					</div>
+				</div>	
+				<div style="overflow-x: scroll; height: 500px; width: 100%">
+					<button type="button" class="btn btn-primary" id="graficarnom_proc">Graficar</button>
+					<div id="chart-container-ciu-proc" class="chart-container" style="position: relative ;width:auto; height: 400px">
+						
+						<canvas id="Chart-nom_proc" style=""></canvas>
+						
+					</div>
+					<label id="labelnom_proc" for="labelnom_proc"></label>
+				</div>		
+			</div>
+
+			<div class="tab-pane" id="reg_proc">
+				<div class="row">
+					<div class="form-group mt-2 col-3">
+						<label for="gruporeg_proc">Alumnos: </label>
+						<select id="gruporeg_proc" name="gruporeg_proc" class="form-control">
+							<option value="" selected>Todos</option>
+							<option value="0">Ingreso</option>
+							<option value="1">Egreso</option>
+							<option value="2">Titulados</option>
+						</select>
+					</div>
+					<div class="form-group mt-2 col-3">
+						<label for="periodoreg_proc">Periodo: </label>
+						<select id="periodoreg_proc" name="periodoreg_proc" class="form-control">
+							<option value="" selected>Todos</option>
+							<option value="0">Agosto - Diciembre</option>
+							<option value="1">Enero - Junio</option>
+						</select>
+					</div>
+					<div class="form-group mt-2 col-3">
+						<label for="ano_curreg_proc">Año: </label>
+						<select id="ano_curreg_proc" name="ano_curreg_proc" class="form-control">
+							<option selected value="0">Todos</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+					</div>
+				</div>	
+				<div style="height: 400px; padding-bottom:40px" class="mb-3">
 					
+						<button type="button" class="btn btn-primary" id="graficarreg_proc">Graficar</button>		
+						<canvas id="Chart-reg_proc" style=""></canvas>
+						<label id="labelreg_proc" for="labelreg_proc"></label>
+				</div>	
+			</div>
+
+			<div class="tab-pane" id="mod_bac">
+				<div class="row">
+					<div class="form-group mt-2 col-3">
+						<label for="grupomod_bac">Alumnos: </label>
+						<select id="grupomod_bac" name="grupomod_bac" class="form-control">
+							<option value="" selected>Todos</option>
+							<option value="0">Ingreso</option>
+							<option value="1">Egreso</option>
+							<option value="2">Titulados</option>
+						</select>
+					</div>
+					<div class="form-group mt-2 col-3">
+						<label for="periodomod_bac">Periodo: </label>
+						<select id="periodomod_bac" name="periodomod_bac" class="form-control">
+							<option value="" selected>Todos</option>
+							<option value="0">Agosto - Diciembre</option>
+							<option value="1">Enero - Junio</option>
+						</select>
+					</div>
+					<div class="form-group mt-2 col-3">
+						<label for="ano_curmod_bac">Año: </label>
+						<select id="ano_curmod_bac" name="ano_curmod_bac" class="form-control">
+							<option selected value="0">Todos</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+					</div>
+				</div>	
+				<div style="height: 400px; padding-bottom:40px" class="mb-3">
+					
+						<button type="button" class="btn btn-primary" id="graficarmod_bac">Graficar</button>		
+						<canvas id="Chart-mod_bac" style=""></canvas>
+						<label id="labelmod_bac" for="labelmod_bac"></label>
+				</div>	
 			</div>
 		</div>
 	</div>
@@ -150,325 +318,561 @@
 
 {% block js %}
 <script>
+	// Calificacion ICNE /////////////////////////////////////////////////////////////////////////////////////////
 	var chrtICNE = document.getElementById("Chart-icne").getContext('2d');
 	var BarChartICNE = new Chart(chrtICNE, {
-	type: 'bar',
-	data: {
-		labels: ["700-800", "800-900", "900-1000", "1000-1100", "1100-1200", "1200-1300"],
-		datasets: [{
-		label: '# de estudiantes por calificación del ICNE',
-		data: [],
-		backgroundColor: [
-			'rgba(255, 99, 132, 0.2)',
-			'rgba(54, 162, 235, 0.2)',
-			'rgba(255, 206, 86, 0.2)',
-			'rgba(75, 192, 192, 0.2)',
-			'rgba(153, 102, 255, 0.2)',
-			'rgba(255, 159, 64, 0.2)'
-		],
-		borderColor: [
-			'rgba(255,99,132,1)',
-			'rgba(54, 162, 235, 1)',
-			'rgba(255, 206, 86, 1)',
-			'rgba(75, 192, 192, 1)',
-			'rgba(153, 102, 255, 1)',
-			'rgba(255, 159, 64, 1)'
-		],
-		borderWidth: 1
-		}]
-	},
-	options: {
-		scales: {
-			yAxes: [{
-				ticks: {
-				beginAtZero: true
-				}
+		type: 'bar',
+		data: {
+			labels: ["700-799", "800-899", "900-999", "1000-1099", "1100-1199", "1200-1300"],
+			datasets: [{
+			label: '# de estudiantes por calificación del ICNE',
+			data: [],
+			backgroundColor: [
+				'rgba(255, 99, 132, 0.2)',
+				'rgba(54, 162, 235, 0.2)',
+				'rgba(255, 206, 86, 0.2)',
+				'rgba(75, 192, 192, 0.2)',
+				'rgba(153, 102, 255, 0.2)',
+				'rgba(255, 159, 64, 0.2)'
+			],
+			borderColor: [
+				'rgba(255,99,132,1)',
+				'rgba(54, 162, 235, 1)',
+				'rgba(255, 206, 86, 1)',
+				'rgba(75, 192, 192, 1)',
+				'rgba(153, 102, 255, 1)',
+				'rgba(255, 159, 64, 1)'
+			],
+			borderWidth: 1
 			}]
 		},
-		responsive: true,
-    	maintainAspectRatio: false
-	}
-	})
-
-	function validateFormICNE() {
-		let grupo = jQuery('#grupoICNE').val();
-		let periodoProcedencia = jQuery('#periodoICNE').val();
-		let ano_curProcedencia = jQuery('#ano_curICNE').val();
-	 
-		var validate = true;
-		if (grupo === "") {
-			validate = false;
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+					beginAtZero: true
+					}
+				}]
+			},
+			responsive: true,
+			maintainAspectRatio: false
 		}
-		if (periodoProcedencia === "" || periodoProcedencia <= 0) {
-			validate = false;
-		}
-		if (ano_curProcedencia === "") {
-			validate = false;
-		}
-		return validate;
-	}
-	
+	});
 
 	$('#graficarICNE').on('click', function(e) {
-		console.log("aaaaaaas")
 		e.preventDefault();
-		if(validateFormICNE){
-	 
-			let formData = {
-				grupo : jQuery('#grupoICNE').val(),
-		 		periodo : jQuery('#periodoICNE').val(),
-		 		ano_cur : jQuery('#ano_curICNE').val(),
-			};
-	 
-			console.log(formData)
-	 
-			$.ajax({
-				url: "{% url 'getICNEGraphData' %}",
-				data: formData,
-				method: "POST",
-				async: false,
-				headers: {
-					'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-				},
-				mode: 'same-origin',
-				success: function(data) {
-					if (data) {
-						console.log(data)
-						BarChartICNE.data.datasets.forEach((dataset) => {
-							dataset.data =data.icne;
-						});
-						BarChartICNE.update();
-						$('#labelICNE').html(
-							'Total de estudiantes: ' +data.cant
-						);
-					}
-				},
-				error: function(error) {
-					console.log(error);
+		
+		let formData = {
+			grupo : jQuery('#grupoICNE').val(),
+			periodo : jQuery('#periodoICNE').val(),
+			ano_cur : jQuery('#ano_curICNE').val(),
+		};
+	
+		$.ajax({
+			url: "{% url 'getICNEGraphData' %}",
+			data: formData,
+			method: "POST",
+			async: false,
+			headers: {
+				'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+			},
+			mode: 'same-origin',
+			success: function(data) {
+				if (data) {
+					console.log(data)
+					BarChartICNE.data.datasets.forEach((dataset) => {
+						dataset.data =data.icne;
+					});
+					BarChartICNE.update();
+					$('#labelICNE').html(
+						'Total de estudiantes: ' +data.cant
+					);
 				}
-			});
-		} else {
-			Swal.fire({
-							 text: "Todos los campos son necesarios",
-							 icon: 'error',
-					 })
-		}
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		});
+		
 	});
 
+	// Examenes Extraordinarios //////////////////////////////////////////////////////////////////////////////////
 	var chrtExa_ext = document.getElementById("Chart-Exa_ext").getContext('2d');
 	var BarChartExa_ext = new Chart(chrtExa_ext, {
-	type: 'bar',
-	data: {
-		labels: ["Ninguno", "1", "2", "3", "4", "5", "6"],
-		datasets: [{
-		label: '# de estudiantes por # de exámenes extraordinarios presentados',
-		data: [],
-		backgroundColor: [
-			'rgba(255, 99, 132, 0.2)',
-			'rgba(54, 162, 235, 0.2)',
-			'rgba(255, 206, 86, 0.2)',
-			'rgba(75, 192, 192, 0.2)',
-			'rgba(153, 102, 255, 0.2)',
-			'rgba(255, 159, 64, 0.2)'
-		],
-		borderColor: [
-			'rgba(255,99,132,1)',
-			'rgba(54, 162, 235, 1)',
-			'rgba(255, 206, 86, 1)',
-			'rgba(75, 192, 192, 1)',
-			'rgba(153, 102, 255, 1)',
-			'rgba(255, 159, 64, 1)'
-		],
-		borderWidth: 1
-		}]
-	},
-	options: {
-		scales: {
-			yAxes: [{
-				ticks: {
-				beginAtZero: true
-				}
+		type: 'bar',
+		data: {
+			labels: ["Ninguno", "1", "2", "3", "4", "5", "6"],
+			datasets: [{
+			label: '# de estudiantes por # de exámenes extraordinarios presentados',
+			data: [],
+			backgroundColor: [
+				'rgba(255, 99, 132, 0.2)',
+				'rgba(54, 162, 235, 0.2)',
+				'rgba(255, 206, 86, 0.2)',
+				'rgba(75, 192, 192, 0.2)',
+				'rgba(153, 102, 255, 0.2)',
+				'rgba(255, 159, 64, 0.2)'
+			],
+			borderColor: [
+				'rgba(255,99,132,1)',
+				'rgba(54, 162, 235, 1)',
+				'rgba(255, 206, 86, 1)',
+				'rgba(75, 192, 192, 1)',
+				'rgba(153, 102, 255, 1)',
+				'rgba(255, 159, 64, 1)'
+			],
+			borderWidth: 1
 			}]
 		},
-		responsive: true,
-    	maintainAspectRatio: false
-	}
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+					beginAtZero: true
+					}
+				}]
+			},
+			responsive: true,
+			maintainAspectRatio: false
+		}
 	});
-
-	function validateFormExa_ext() {
-		let grupo = jQuery('#grupoExa_ext').val();
-		let periodoExa_ext = jQuery('#periodoExa_ext').val();
-		let ano_curExa_ext = jQuery('#ano_curExa_ext').val();
-	 
-		var validate = true;
-		if (grupo === "") {
-			validate = false;
-		}
-		if (periodoExa_ext === "" || periodoExa_ext <= 0) {
-			validate = false;
-		}
-		if (ano_curExa_ext === "") {
-			validate = false;
-		}
-		return validate;
-	}
-	
 
 	$('#graficarExa_ext').on('click', function(e) {
 		e.preventDefault();
-		if(validateFormExa_ext){
-	 
-			let formData = {
-				grupo : jQuery('#grupoExa_ext').val(),
-		 		periodo : jQuery('#periodoExa_ext').val(),
-		 		ano_cur : jQuery('#ano_curExa_ext').val(),
-			};
-	 
-			console.log(formData)
-	 
-			$.ajax({
-				url: "{% url 'getExaExtGraphData' %}",
-				data: formData,
-				method: "POST",
-				async: false,
-				headers: {
-					'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-				},
-				mode: 'same-origin',
-				success: function(data) {
-					if (data) {
-						console.log(data)
-						BarChartExa_ext.data.datasets.forEach((dataset) => {
-							dataset.data =data.exa_ext;
-						});
-						BarChartExa_ext.update();
-						$('#labelExa_ext').html(
-							'Total de estudiantes: ' +data.cant
-						);
-					}
-				},
-				error: function(error) {
-					console.log(error);
+		
+		let formData = {
+			grupo : jQuery('#grupoExa_ext').val(),
+			periodo : jQuery('#periodoExa_ext').val(),
+			ano_cur : jQuery('#ano_curExa_ext').val(),
+		};
+		
+		$.ajax({
+			url: "{% url 'getExaExtGraphData' %}",
+			data: formData,
+			method: "POST",
+			async: false,
+			headers: {
+				'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+			},
+			mode: 'same-origin',
+			success: function(data) {
+				if (data) {
+					console.log(data)
+					BarChartExa_ext.data.datasets.forEach((dataset) => {
+						dataset.data =data.exa_ext;
+					});
+					BarChartExa_ext.update();
+					$('#labelExa_ext').html(
+						'Total de estudiantes: ' +data.cant
+					);
 				}
-			});
-		} else {
-			Swal.fire({
-							 text: "Todos los campos son necesarios",
-							 icon: 'error',
-					 })
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		});
+	
+	}); 
+
+	// Materias Reprobadas //////////////////////////////////////////////////////////////////////////////////
+	var chrtmat_rep = document.getElementById("Chart-mat_rep").getContext('2d');
+	var BarChartmat_rep = new Chart(chrtmat_rep, {
+		type: 'bar',
+		data: {
+			labels: ["Ninguna", "1", "2", "3", "4 o más"],
+			datasets: [{
+			label: '# de estudiantes por # de Materias Reprobadas',
+			data: [],
+			backgroundColor: [
+				'rgba(255, 99, 132, 0.2)',
+				'rgba(54, 162, 235, 0.2)',
+				'rgba(255, 206, 86, 0.2)',
+				'rgba(75, 192, 192, 0.2)',
+				'rgba(153, 102, 255, 0.2)',
+				'rgba(255, 159, 64, 0.2)'
+			],
+			borderColor: [
+				'rgba(255,99,132,1)',
+				'rgba(54, 162, 235, 1)',
+				'rgba(255, 206, 86, 1)',
+				'rgba(75, 192, 192, 1)',
+				'rgba(153, 102, 255, 1)',
+				'rgba(255, 159, 64, 1)'
+			],
+			borderWidth: 1
+			}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+					beginAtZero: true
+					}
+				}]
+			},
+			responsive: true,
+			maintainAspectRatio: false
 		}
+	});
+
+	$('#graficarmat_rep').on('click', function(e) {
+		e.preventDefault();
+		
+		let formData = {
+			grupo : jQuery('#grupomat_rep').val(),
+			periodo : jQuery('#periodomat_rep').val(),
+			ano_cur : jQuery('#ano_curmat_rep').val(),
+		};
+		
+		$.ajax({
+			url: "{% url 'getFailedSubjectsGraphData' %}",
+			data: formData,
+			method: "POST",
+			async: false,
+			headers: {
+				'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+			},
+			mode: 'same-origin',
+			success: function(data) {
+				if (data) {
+					console.log(data)
+					BarChartmat_rep.data.datasets.forEach((dataset) => {
+						dataset.data =data.mat_rep;
+					});
+					BarChartmat_rep.update();
+					$('#labelmat_rep').html(
+						'Total de estudiantes: ' +data.cant
+					);
+				}
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		});
+	
 	}); 
 	
-	// procedencia ///////////////////////////////////////////////////////////////////////////////////////////////
+	// CIUDAD de procedencia ///////////////////////////////////////////////////////////////////////////////////////////////
 
 	var chrtciu_proc = document.getElementById("Chart-ciu_proc").getContext('2d');
 	var BarChartciu_proc = new Chart(chrtciu_proc, {
-	type: 'bar',
-	data: {
-		labels: [],
-		datasets: [{
-		label: '# de estudiantes por Ciudad de Procedencia',
-		data: [],
-		backgroundColor: [
-				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
-				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
-				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
-				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
-				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
-				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
-				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
-				'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
-		],
-		borderColor: [
-			'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
-			'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
-			'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
-			'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
-		],
-		borderWidth: 1
-		}]
-	},
-	options: {
-		scales: {
-			yAxes: [{
-				ticks: {
-				beginAtZero: true
-				}
+		type: 'bar',
+		data: {
+			labels: [],
+			datasets: [{
+			label: '# de estudiantes por Ciudad de Procedencia',
+			data: [],
+			backgroundColor: [
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+			],
+			borderColor: [
+				'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
+				'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
+				'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
+				'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
+			],
+			borderWidth: 1
 			}]
 		},
-		responsive: true,
-    	maintainAspectRatio: false
-	}
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+					beginAtZero: true
+					}
+				}]
+			},
+			responsive: true,
+			maintainAspectRatio: false
+		}
 	})
 
-	function validateFormciu_proc() {
-		let grupo = jQuery('#grupociu_proc').val();
-		let periodoProcedencia = jQuery('#periodociu_proc').val();
-		let ano_curProcedencia = jQuery('#ano_curciu_proc').val();
-	 
-		var validate = true;
-		if (grupo === "") {
-			validate = false;
-		}
-		if (periodoProcedencia === "" || periodoProcedencia <= 0) {
-			validate = false;
-		}
-		if (ano_curProcedencia === "") {
-			validate = false;
-		}
-		return validate;
-	}
-	
-
 	$('#graficarciu_proc').on('click', function(e) {
-		console.log("aaaaaaas")
 		e.preventDefault();
-		if(validateFormciu_proc){
-	 
-			let formData = {
-				grupo : jQuery('#grupociu_proc').val(),
-		 		periodo : jQuery('#periodociu_proc').val(),
-		 		ano_cur : jQuery('#ano_curciu_proc').val(),
-			};
-	 
-			console.log(formData)
-	 
-			$.ajax({
-				url: "{% url 'getProcedenceGraphData' %}",
-				data: formData,
-				method: "POST",
-				async: false,
-				headers: {
-					'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-				},
-				mode: 'same-origin',
-				success: function(data) {
-					if (data) {
-						console.log(data)
-						BarChartciu_proc.data.labels = data.labels;
-						BarChartciu_proc.data.datasets.forEach((dataset) => {
-							dataset.data =data.procedence;
-						});
-						BarChartciu_proc.update();
-						$('#labelciu_proc').html(
-							'Total de estudiantes: ' +data.cant
-						);
-						$('#chart-container-proc').css('width', '1800px');
-						$('#chart-container-proc').css('height', '800px');
-						
-					}
-				},
-				error: function(error) {
-					console.log(error);
+
+		let formData = {
+			grupo : jQuery('#grupociu_proc').val(),
+			periodo : jQuery('#periodociu_proc').val(),
+			ano_cur : jQuery('#ano_curciu_proc').val(),
+		};
+
+		$.ajax({
+			url: "{% url 'getProcedenceGraphData' %}",
+			data: formData,
+			method: "POST",
+			async: false,
+			headers: {
+				'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+			},
+			mode: 'same-origin',
+			success: function(data) {
+				if (data) {
+					console.log(data)
+					BarChartciu_proc.data.labels = data.labels;
+					BarChartciu_proc.data.datasets.forEach((dataset) => {
+						dataset.data =data.procedence;
+					});
+					BarChartciu_proc.update();
+					$('#labelciu_proc').html(
+						'Total de estudiantes: ' +data.cant
+					);
+					$('#chart-container-proc').css('width', '1800px');
+					$('#chart-container-proc').css('height', '800px');
+					
 				}
-			});
-		} else {
-			Swal.fire({
-							 text: "Todos los campos son necesarios",
-							 icon: 'error',
-					 })
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		});
+	});
+
+	// Nombre de escuela de procedencia  /////////////////////////////////////////////////////////////////////////////////////
+	var chrtnom_proc = document.getElementById("Chart-nom_proc").getContext('2d');
+	var BarChartnom_proc = new Chart(chrtnom_proc, {
+		type: 'bar',
+		data: {
+			labels: [],
+			datasets: [{
+			label: '# de estudiantes por Bachillerato de Procedencia',
+			data: [],
+			backgroundColor: [
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)',
+			],
+			borderColor: [
+				'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
+				'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
+				'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
+				'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)',
+			],
+			borderWidth: 1
+			}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+					beginAtZero: true
+					}
+				}]
+			},
+			responsive: true,
+			maintainAspectRatio: false
 		}
+	})
+
+	$('#graficarnom_proc').on('click', function(e) {
+		e.preventDefault();
+
+		let formData = {
+			grupo : jQuery('#gruponom_proc').val(),
+			periodo : jQuery('#periodonom_proc').val(),
+			ano_cur : jQuery('#ano_curnom_proc').val(),
+		};
+
+		$.ajax({
+			url: "{% url 'getSchoolProcedenceGraphData' %}",
+			data: formData,
+			method: "POST",
+			async: false,
+			headers: {
+				'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+			},
+			mode: 'same-origin',
+			success: function(data) {
+				if (data) {
+					console.log(data)
+					BarChartnom_proc.data.labels = data.labels;
+					BarChartnom_proc.data.datasets.forEach((dataset) => {
+						dataset.data =data.procedence;
+					});
+					BarChartnom_proc.update();
+					$('#labelnom_proc').html(
+						'Total de estudiantes: ' +data.cant
+					);
+					$('#chart-container-ciu-proc').css('width', '1800px');
+					$('#chart-container-ciu-proc').css('height', '800px');
+					
+				}
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		});
 	});
 	
+	// Regimen de Procedencia //////////////////////////////////////////////////////////////////////////////////
+	var chrtreg_proc = document.getElementById("Chart-reg_proc").getContext('2d');
+	var BarChartreg_proc = new Chart(chrtreg_proc, {
+		type: 'bar',
+		data: {
+			labels: ["Público", "Privado", "PROFECO"],
+			datasets: [{
+			label: '# de estudiantes por Régimen del Bachillerato de Procedencia',
+			data: [],
+			backgroundColor: [
+				'rgba(255, 99, 132, 0.2)',
+				'rgba(54, 162, 235, 0.2)',
+				'rgba(255, 206, 86, 0.2)',
+				'rgba(75, 192, 192, 0.2)',
+				'rgba(153, 102, 255, 0.2)',
+				'rgba(255, 159, 64, 0.2)'
+			],
+			borderColor: [
+				'rgba(255,99,132,1)',
+				'rgba(54, 162, 235, 1)',
+				'rgba(255, 206, 86, 1)',
+				'rgba(75, 192, 192, 1)',
+				'rgba(153, 102, 255, 1)',
+				'rgba(255, 159, 64, 1)'
+			],
+			borderWidth: 1
+			}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+					beginAtZero: true
+					}
+				}]
+			},
+			responsive: true,
+			maintainAspectRatio: false
+		}
+	});
+
+	$('#graficarreg_proc').on('click', function(e) {
+		e.preventDefault();
+		
+		let formData = {
+			grupo : jQuery('#gruporeg_proc').val(),
+			periodo : jQuery('#periodoreg_proc').val(),
+			ano_cur : jQuery('#ano_curreg_proc').val(),
+		};
+		
+		$.ajax({
+			url: "{% url 'getSchoolRegimeGraphData' %}",
+			data: formData,
+			method: "POST",
+			async: false,
+			headers: {
+				'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+			},
+			mode: 'same-origin',
+			success: function(data) {
+				if (data) {
+					console.log(data)
+					BarChartreg_proc.data.datasets.forEach((dataset) => {
+						dataset.data =data.reg_proc;
+					});
+					BarChartreg_proc.update();
+					$('#labelreg_proc').html(
+						'Total de estudiantes: ' +data.cant
+					);
+				}
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		});
+	
+	}); 
+
+	// Modalidad Bachillerato //////////////////////////////////////////////////////////////////////////////////
+	var chrtmod_bac = document.getElementById("Chart-mod_bac").getContext('2d');
+	var BarChartmod_bac = new Chart(chrtmod_bac, {
+		type: 'bar',
+		data: {
+			labels: ["Bachillerato general","Bachillerato tecnológico","Profesional técnico bachiller",
+				"Bachillerato intercultural (bilingüe indígena)","Bachillerato internacional",
+				"Acuerdo secretarial 286 Bachillerato","Preparatoria abierta","Educación media superior a distancia"],
+			datasets: [{
+			label: '# de estudiantes por Modalidad de Bachillerato',
+			data: [],
+			backgroundColor: [
+				'rgba(255, 99, 132, 0.2)',
+				'rgba(54, 162, 235, 0.2)',
+				'rgba(255, 206, 86, 0.2)',
+				'rgba(75, 192, 192, 0.2)',
+				'rgba(153, 102, 255, 0.2)',
+				'rgba(255, 159, 64, 0.2)',
+				'rgba(255, 99, 132, 0.2)',
+			],
+			borderColor: [
+				'rgba(255,99,132,1)',
+				'rgba(54, 162, 235, 1)',
+				'rgba(255, 206, 86, 1)',
+				'rgba(75, 192, 192, 1)',
+				'rgba(153, 102, 255, 1)',
+				'rgba(255, 159, 64, 1)',
+				'rgba(255,99,132,1)',
+			],
+			borderWidth: 1
+			}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+					beginAtZero: true
+					}
+				}]
+			},
+			responsive: true,
+			maintainAspectRatio: false
+		}
+	});
+
+	$('#graficarmod_bac').on('click', function(e) {
+		e.preventDefault();
+		
+		let formData = {
+			grupo : jQuery('#grupomod_bac').val(),
+			periodo : jQuery('#periodomod_bac').val(),
+			ano_cur : jQuery('#ano_curmod_bac').val(),
+		};
+		
+		$.ajax({
+			url: "{% url 'getSchoolModalityGraphData' %}",
+			data: formData,
+			method: "POST",
+			async: false,
+			headers: {
+				'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+			},
+			mode: 'same-origin',
+			success: function(data) {
+				if (data) {
+					console.log(data)
+					BarChartmod_bac.data.datasets.forEach((dataset) => {
+						dataset.data =data.mod_bac;
+					});
+					BarChartmod_bac.update();
+					$('#labelmod_bac').html(
+						'Total de estudiantes: ' +data.cant
+					);
+				}
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		});
+	
+	}); 
 </script>
 {% endblock %}
