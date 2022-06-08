@@ -28,7 +28,7 @@ def getSchoolModalityGraphData(request):
         students7 = students.filter(mod_bac=7).count()
         students8 = students.filter(mod_bac=8).count()
         mod_bac = [students1, students2, students3, students4, students5, students6, students7, students8]
-        print(mod_bac)
+        
         return HttpResponse(json.dumps({'mod_bac':mod_bac, 'cant':cant}), 'application/json')
 
 
@@ -133,6 +133,7 @@ def getICNEGraphData(request):
         students12 = students.filter(icne__gte=1100).filter(icne__lte=1199).count()
         students13 = students.filter(icne__gte=1200).filter(icne__lte=1300).count()
         icne = [students8, students9, students10, students11, students12, students13]
+
         return HttpResponse(json.dumps({'icne':icne, 'cant':cant}), 'application/json')
 
 def getFilteredData(student_goup, period, anio):
