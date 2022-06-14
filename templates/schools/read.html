@@ -1,46 +1,33 @@
 {% extends 'read.html' %}
 
 {% block th %}
-	<th class="border-top-0">#</th>
+	<th class="border-top-0">Clave de procedencia</th>
 	<th class="border-top-0">Escuela</th>
-	<th class="border-top-0">Lema</th>
-	<th class="border-top-0">Logo</th>
-	<th class="border-top-0">Nivel</th>
-	<th class="border-top-0">Control</th>
-	<th class="border-top-0">Clave</th>
-	<th class="border-top-0">Sostenimiento</th>
-	<th class="border-top-0">Dirección</th>
-	<th class="border-top-0">Municipio</th>
-	<th class="border-top-0">Número de estudiantes</th>
-	<th class="border-top-0">Número de maestros</th>
+	<th class="border-top-0">Ciudad de procedencia</th>
+	<th class="border-top-0">Procedencia</th>
+	<th class="border-top-0">Modo de bachillerato</th>
 {% endblock %}
 
 {% block foreach %}
 	<tr>
-		<td>{{ object.school_name }}</td>
-		<td>{{ object.catchword }}</td>
-		<td>{{ object.logo }}</td>
-		<td>{{ object.level }}</td>
-		<td>{{ object.control }}</td>
-		<td>{{ object.clue }}</td>
-		<td>{{ object.sustenance }}</td>
-		<td>{{ object.location }}</td>
-		<td>{{ object.municipality }}</td>
-		<td>{{ object.student_population }}</td>
-		<td>{{ object.teaching_population }}</td>
+		<td>{{ object.cve_proc }}</td>
+		<td>{{ object.nom_proc }}</td>
+		<td>{{ object.ciu_proc }}</td>
+		<td>{{ object.reg_proc }}</td>
+		<td>{{ object.mod_bac }}</td>
+		<td>
+			<a href="{% url 'update_school' object.cve_proc %}">
+				<button type="button" class="btn btn-warning btn-xs btn-flat">
+					<i class="fas fa-pencil-alt" style="color: white"></i>
+				</button>
+			</a>
+			<a href="{% url 'delete_school' object.cve_proc %}">
+				<button type="button" class="btn btn-danger btn-xs btn-flat">
+					<i class="fas fa-trash-alt" style="color: white"></i>
+				</button>
+			</a>
+		</td>
 	</tr>
-	<td>
-		<a href="{% url 'update_school' object.id %}">
-			<button type="button" class="btn btn-warning btn-xs btn-flat">
-				<i class="fas fa-pencil-alt" style="color: white"></i>
-			</button>
-		</a>
-		<a href="{% url 'delete_school' object.id %}">
-			<button type="button" class="btn btn-danger btn-xs btn-flat">
-				<i class="fas fa-trash-alt" style="color: white"></i>
-			</button>
-		</a>
-	</td>
 {% endblock %}
 
 {% block create %}

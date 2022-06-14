@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 
+import django_heroku
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -25,7 +28,7 @@ SECRET_KEY = 'django-insecure-ifz9j_6t5jc56*4gpl0n)5#o_8an^tp912xn&kqhn6we!p744q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://academic-app.herokuapp.com/']
 
 
 # Application definition
@@ -105,10 +108,10 @@ WSGI_APPLICATION = 'academic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'academic',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
+        'NAME': 'dbtkrkn3soji0d',
+        'USER': 'vvygzqsjxtvhtr',
+        'PASSWORD': 'a364132b9da080468580c18565fe8ee429762972e221d4d723b7b3e8ebe6b53c',
+        'HOST': 'ec2-52-44-13-158.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -147,7 +150,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = 'static/'
+django_heroku.settings(locals())
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",

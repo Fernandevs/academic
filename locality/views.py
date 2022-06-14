@@ -149,4 +149,4 @@ class LocalityMassiveTemplateView(
                 print(e.__str__())
                 continue
 
-        return redirect('list_municipality')
+        return redirect('list_locality')

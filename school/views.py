@@ -35,7 +35,7 @@ class SchoolCreateView(
     form_class = SchoolForm
     login_url = reverse_lazy('login')
     template_name = 'schools/create.html'
-    success_url = reverse_lazy('list_students')
+    success_url = reverse_lazy('list_school')
     permission_required = 'school.add_school'
     permission_denied_message = 'No cuenta con los permisos para realizar esta acción'
 
@@ -56,7 +56,7 @@ class SchoolUpdateView(
     login_url = reverse_lazy('login')
     template_name_suffix = '_update_form'
     template_name = 'schools/update.html'
-    success_url = reverse_lazy('list_students')
+    success_url = reverse_lazy('list_school')
     permission_required = 'school.change_school'
     permission_denied_message = 'No cuenta con los permisos para realizar esta acción'
 
@@ -75,7 +75,7 @@ class SchoolDeleteView(
     model = School
     login_url = reverse_lazy('login')
     template_name = 'schools/delete.html'
-    success_url = reverse_lazy('list_students')
+    success_url = reverse_lazy('list_school')
     permission_required = 'school.delete_school'
     permission_denied_message = 'No cuenta con los permisos para realizar esta acción'
 
