@@ -108,10 +108,10 @@ WSGI_APPLICATION = 'academic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dbtkrkn3soji0d',
-        'USER': 'vvygzqsjxtvhtr',
-        'PASSWORD': 'a364132b9da080468580c18565fe8ee429762972e221d4d723b7b3e8ebe6b53c',
-        'HOST': 'ec2-52-44-13-158.compute-1.amazonaws.com',
+        'NAME': 'd8mgnb28f2keud',
+        'USER': 'iwszprpvyieulu',
+        'PASSWORD': '2ab0f4a8b45ef31d515e1339975fe673d0aa2bed11742c4b9bbc17ec8f55aac7',
+        'HOST': 'ec2-54-147-33-38.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -150,14 +150,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 django_heroku.settings(locals())
 
 # Media settings
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Email settings
